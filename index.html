@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rene Barrera | Game Developer Portfolio</title>
+<title>Rene Barrera | Desarrollador de Videojuegos</title>
 
-<meta name="description" content="Portafolio de Rene Barrera, desarrollador de videojuegos en Unity especializado en C#, VFX y sistemas interactivos.">
+<meta name="description" content="Portafolio de Rene Barrera, desarrollador de videojuegos especializado en Unity, C# y efectos visuales.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,14 +50,8 @@ padding:25px 10%;
 
 .logo{
 
-font-size:24px;
-font-weight:800;
-
-}
-
-.logo span{
-
-color:#ff2fb3;
+font-size:22px;
+font-weight:700;
 
 }
 
@@ -94,38 +88,24 @@ margin-bottom:20px;
 
 .hero p{
 
-max-width:600px;
+max-width:700px;
 margin:auto;
-opacity:0.8;
+opacity:0.85;
 margin-bottom:40px;
+line-height:1.6;
 
 }
 
-.buttons{
+/* IMAGEN VFX */
 
-display:flex;
-justify-content:center;
-gap:20px;
+.hero img{
 
-}
+width:100%;
+max-width:700px;
+border-radius:10px;
+margin-top:30px;
 
-.btn{
-
-background:#ff2fb3;
-padding:12px 25px;
-border-radius:8px;
-text-decoration:none;
-color:white;
-
-}
-
-.btn-outline{
-
-border:1px solid #ff2fb3;
-padding:12px 25px;
-border-radius:8px;
-text-decoration:none;
-color:white;
+box-shadow:0 0 40px rgba(255,0,150,0.4);
 
 }
 
@@ -145,7 +125,7 @@ text-align:center;
 
 }
 
-/* GRID */
+/* GRID PROYECTOS */
 
 .grid{
 
@@ -154,8 +134,6 @@ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
 
 }
-
-/* CARD */
 
 .card{
 
@@ -173,7 +151,7 @@ margin-bottom:15px;
 
 }
 
-/* FORM */
+/* CONTACTO */
 
 form{
 
@@ -204,6 +182,12 @@ cursor:pointer;
 
 }
 
+button:hover{
+
+background:#ff4fc4;
+
+}
+
 /* FOOTER */
 
 footer{
@@ -223,13 +207,12 @@ opacity:0.6;
 <header>
 
 <div class="logo">
-R<span>★</span>
+Rene Barrera
 </div>
 
 <nav>
 
-<a href="#trabajos">Proyectos</a>
-<a href="#skills">Skills</a>
+<a href="#proyectos">Proyectos</a>
 <a href="#sobre">Sobre mí</a>
 <a href="#contacto">Contacto</a>
 
@@ -237,25 +220,24 @@ R<span>★</span>
 
 </header>
 
+
 <section class="hero">
 
-<h1>Rene Barrera</h1>
+<h1>Rene Barrera, Game Developer</h1>
 
 <p>
-Game Developer enfocado en Unity y C#. Me apasiona crear experiencias
-interactivas combinando programación, diseño visual y sistemas de gameplay.
+Soy desarrollador de videojuegos enfocado en Unity y C#. Me interesa crear
+experiencias interactivas donde la programación, los efectos visuales y el
+diseño trabajen juntos para construir mundos inmersivos y sistemas de juego
+interesantes para los jugadores.
 </p>
 
-<div class="buttons">
-
-<a href="#trabajos" class="btn">Ver proyectos</a>
-<a href="#contacto" class="btn-outline">Contactar</a>
-
-</div>
+<img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee" alt="Efectos visuales digitales">
 
 </section>
 
-<section id="trabajos">
+
+<section id="proyectos">
 
 <h2>Proyectos</h2>
 
@@ -263,62 +245,40 @@ interactivas combinando programación, diseño visual y sistemas de gameplay.
 
 <div class="card">
 <img src="https://picsum.photos/400/250" alt="Proyecto 1">
-<h3>Water Drop Game</h3>
-<p>Prototipo de juego donde una gota debe llegar al sifón antes de evaporarse.</p>
+<h3>Juego de la Gota</h3>
+<p>Prototipo donde una gota debe llegar al sifón de la cocina antes de evaporarse.</p>
 </div>
 
 <div class="card">
 <img src="https://picsum.photos/401/250" alt="Proyecto 2">
-<h3>Unity VFX Experiments</h3>
-<p>Exploración de efectos visuales usando Unity VFX Graph.</p>
+<h3>Experimentos VFX</h3>
+<p>Exploración de efectos visuales en tiempo real utilizando Unity VFX Graph.</p>
 </div>
 
 <div class="card">
 <img src="https://picsum.photos/402/250" alt="Proyecto 3">
-<h3>Gameplay Systems</h3>
-<p>Experimentos con sistemas interactivos y mecánicas de juego.</p>
+<h3>Sistemas de Gameplay</h3>
+<p>Desarrollo de mecánicas y sistemas interactivos para videojuegos.</p>
 </div>
 
 </div>
 
 </section>
 
-<section id="skills">
-
-<h2>Skills</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Unity Development</h3>
-<p>Programación de mecánicas y prototipos usando C#.</p>
-</div>
-
-<div class="card">
-<h3>VFX</h3>
-<p>Efectos visuales en tiempo real usando VFX Graph y Shader Graph.</p>
-</div>
-
-<div class="card">
-<h3>3D & Digital Design</h3>
-<p>Modelado 3D y diseño digital enfocado en videojuegos.</p>
-</div>
-
-</div>
-
-</section>
 
 <section id="sobre">
 
 <h2>Sobre mí</h2>
 
-<p style="max-width:700px;margin:auto;text-align:center;">
+<p style="max-width:700px;margin:auto;text-align:center;line-height:1.6;">
 Soy estudiante de diseño industrial con enfoque en diseño digital y desarrollo
-de videojuegos. Me interesa explorar cómo la programación, los efectos visuales
-y el diseño interactivo pueden crear experiencias inmersivas para los jugadores.
+de videojuegos. Me apasiona aprender nuevas tecnologías y explorar cómo los
+efectos visuales, la programación y el diseño pueden combinarse para crear
+experiencias interactivas innovadoras.
 </p>
 
 </section>
+
 
 <section id="contacto">
 
@@ -328,15 +288,16 @@ y el diseño interactivo pueden crear experiencias inmersivas para los jugadores
 
 <input type="text" placeholder="Nombre" required>
 
-<input type="email" placeholder="Email" required>
+<input type="email" placeholder="Correo electrónico" required>
 
-<textarea rows="5" placeholder="Mensaje"></textarea>
+<textarea rows="5" placeholder="Escribe tu mensaje"></textarea>
 
-<button type="submit">Enviar</button>
+<button type="submit">Enviar mensaje</button>
 
 </form>
 
 </section>
+
 
 <footer>
 
