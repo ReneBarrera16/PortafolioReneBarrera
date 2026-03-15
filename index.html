@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>René Barrera – Game Developer</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      line-height: 1.6;
+      background-color: #0a0a0a;
+      background-image: url('backgroundrene.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    /* Overlay oscuro para que el texto sea legible sobre el fondo */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px 60px;
+      text-align: center;
+    }
+
+    /* ── BANNER ── */
+    .banner {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 40px;
+    }
+
+    /* ── HERO ── */
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .hero h3 {
+      color: #ff4da6;
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      font-size: 18px;
+      margin: 0 auto 20px;
+      opacity: 0.9;
+    }
+
+    /* ── PROJECTS ── */
+    .section-title {
+      font-size: 36px;
+      margin: 80px 0 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      justify-items: center;
+    }
+
+    /* VFX Grid - 3 columnas */
+    .grid-vfx {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      justify-items: center;
+    }
+
+    /* Card */
+    .card {
+      background: #111;
+      border-radius: 15px;
+      width: 320px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      background: #2a0018;
+      box-shadow: 0 0 30px rgba(255, 77, 166, 0.7), 0 10px 25px rgba(0, 0, 0, 0.5);
+      transform: translateY(-6px);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    /* VFX Items */
+    .vfx-item {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .vfx-item:hover {
+      box-shadow: 0 0 30px rgba(255, 77, 166, 0.7), 0 10px 25px rgba(0, 0, 0, 0.5);
+      transform: translateY(-6px);
+    }
+
+    .vfx-item img {
+      width: 100%;
+      display: block;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-body h3 {
+      margin: 0 0 8px;
+      color: #ff4da6;
+    }
+
+    .card-body p {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-bottom: 14px;
+    }
+
+    .btn-play {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #ff4da6;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.2s ease;
+    }
+
+    .btn-play:hover {
+      background: #ff80c0;
+    }
+
+    /* ── CONTACT ── */
+    .contact-title {
+      font-size: 36px;
+      margin: 80px 0 16px;
+    }
+
+    .contact-sub {
+      opacity: 0.85;
+      margin-bottom: 30px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      padding: 12px 26px;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: opacity 0.2s ease;
+    }
+
+    .social-links a:hover {
+      opacity: 0.8;
+    }
+
+    .btn-linkedin  { background: #0A66C2; }
+    .btn-github    { background: #333; }
+    .btn-artstation{ background: #0d3a66; }
+    .btn-email     { background: #ff7a00; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-vfx {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 360px;
+      }
+
+      .vfx-item {
+        width: 100%;
+        max-width: 360px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- Banner -->
+    <img src="BannerRene.png" alt="René Barrera Banner" class="banner" />
+
+    <!-- Hero -->
+    <section class="hero">
+      <p>
+        Game developer specialized in Unity and C#, focused on building dynamic and well-structured interactive
+        experiences. I'm passionate about combining solid programming with strong visual design to create games that
+        feel smooth, responsive, and engaging.
+      </p>
+      <p>
+        I have experience working with real-time VFX and Shader Graph in Unity, exploring how visual systems and
+        gameplay logic can work together to enhance player immersion. I enjoy tackling technical challenges that require
+        optimizing mechanics, improving performance, and refining every detail to deliver polished and functional
+        experiences.
+      </p>
+    </section>
+
+    <!-- Projects -->
+    <h2 class="section-title">Proyectos Trabajados</h2>
+
+    <div class="grid">
+      <!-- Droppy -->
+      <div class="card">
+        <img src="https://img.itch.zone/aW1nLzI2MDYxOTc0LnBuZw==/original/QNeDFe.png" alt="Droppy en busca del mar" />
+        <div class="card-body">
+          <h3>Droppy en busca del mar</h3>
+          <p>Survive, recharge, and find the path to the ocean.</p>
+          <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play">Play Game</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- VFX Section -->
+    <h2 class="section-title">VFX</h2>
+
+    <div class="grid-vfx">
+      <div class="vfx-item">
+        <img src="VFX - 1.jpg" alt="VFX 1" />
+      </div>
+      <div class="vfx-item">
+        <img src="VFX - 2.jpg" alt="VFX 2" />
+      </div>
+      <div class="vfx-item">
+        <img src="VFX - 3.jpg" alt="VFX 3" />
+      </div>
+    </div>
+
+    <!-- Learning Unity Section -->
+    <h2 class="section-title">Learning Unity</h2>
+
+    <div class="grid">
+      <!-- Snack Smash -->
+      <div class="card">
+        <img src="https://img.itch.zone/aW1nLzI1OTk3NjMwLnBuZw==/315x250%23c/cALvgU.png" alt="Snack Smash" />
+        <div class="card-body">
+          <h3>Snack Smash</h3>
+          <p>A fast-paced food smashing game where reflexes are everything.</p>
+          <a href="https://renebarrera.itch.io/snack-smash" target="_blank" class="btn-play">Play Game</a>
+        </div>
+      </div>
+
+      <!-- Food Rush -->
+      <div class="card">
+        <img src="https://img.itch.zone/aW1nLzI1OTI2NTQxLnBuZw==/315x250%23c/qsaZP5.png" alt="Food Rush Clicker" />
+        <div class="card-body">
+          <h3>Food Rush Clicker</h3>
+          <p>Click and grow your food empire in this fast incremental game.</p>
+          <a href="https://renebarrera.itch.io/food-rush-clicker" target="_blank" class="btn-play">Play Game</a>
+        </div>
+      </div>
+
+      <!-- Sé un balón -->
+      <div class="card">
+        <img src="https://img.itch.zone/aW1nLzI1OTAxODQyLnBuZw==/315x250%23c/BktcyI.png" alt="Sé un balón" />
+        <div class="card-body">
+          <h3>Sé un balón</h3>
+          <p>Control a soccer ball and overcome obstacles in this fun challenge.</p>
+          <a href="https://renebarrera.itch.io/se-un-balon" target="_blank" class="btn-play">Play Game</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <h2 class="contact-title">Contact</h2>
+    <p class="contact-sub">If you want to collaborate or learn more about my work, feel free to connect with me.</p>
+
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/rene-barrera-lizarazo-28b57435a/" target="_blank" class="btn-linkedin">LinkedIn</a>
+      <a href="https://github.com/ReneBarrera16" target="_blank" class="btn-github">GitHub</a>
+      <a href="https://www.artstation.com/lizarazo611" target="_blank" class="btn-artstation">ArtStation</a>
+      <a href="mailto:lizarazo611@gmail.com" class="btn-email">Email</a>
+    </div>
+
+  </div>
+</body>
+</html>
