@@ -46,7 +46,72 @@
       max-height: 320px;
       object-fit: cover;
       display: block;
-      margin-bottom: 40px;
+      margin: 20px 0 40px;
+    }
+
+    .top-nav {
+      position: relative;
+      margin: 20px auto 0;
+      background: rgba(17, 17, 17, 0.72);
+      border-radius: 14px;
+      padding: 10px 0;
+      z-index: 2;
+    }
+
+    .top-nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-nav a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .top-nav a:hover {
+      background: rgba(255, 77, 166, 0.35);
+    }
+
+    .project-popup {
+      display: none;
+      margin-top: 14px;
+      background: rgba(25, 25, 25, 0.96);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: left;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .project-popup.active {
+      display: block;
+    }
+
+    .project-popup p {
+      margin: 0 0 14px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .project-popup .btn-close {
+      margin-top: 10px;
+      background: #333;
+      border: 1px solid #555;
+      padding: 8px 14px;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .project-popup .btn-close:hover {
+      background: #444;
     }
 
     /* ── HERO ── */
@@ -227,6 +292,16 @@
 <body>
   <div class="wrapper">
 
+    <!-- Navegación principal -->
+    <nav class="top-nav">
+      <ul>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#vfx">VFX</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </nav>
+
     <!-- Banner -->
     <img src="BannerRene.png" alt="René Barrera Banner" class="banner" />
 
@@ -246,22 +321,34 @@
     </section>
 
     <!-- Projects -->
-    <h2 class="section-title">Proyectos Trabajados</h2>
+    <h2 class="section-title" id="proyectos">Proyectos Trabajados</h2>
 
     <div class="grid">
       <!-- Droppy -->
-      <div class="card">
+      <div class="card" id="droppy-card">
         <img src="https://img.itch.zone/aW1nLzI2MDYxOTc0LnBuZw==/original/QNeDFe.png" alt="Droppy en busca del mar" />
         <div class="card-body">
           <h3>Droppy en busca del mar</h3>
-          <p>Survive, recharge, and find the path to the ocean.</p>
-          <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play">Play Game</a>
+          <p>Trabajo en environment, sistema de partículas, UI y C# para crear una experiencia suave y visualmente inmersiva.</p>
+          <button class="btn-play" id="droppy-details-btn">Ver detalles</button>
+          <div class="project-popup" id="droppy-popup">
+            <p>Droppy es un juego de plataformas estilo puzzle donde debes manejar recursos de energía, evitar obstáculos y guiar a tu personaje hasta el mar.</p>
+            <p>En este proyecto implementé:</p>
+            <ul>
+              <li>Sistemas de environment dinámicos</li>
+              <li>Partículas para efectos de agua y viento</li>
+              <li>Interfaz UI responsive con estados de salud/energía</li>
+              <li>Lógica de juego con C# para mecánicas de recolección y puzles</li>
+            </ul>
+            <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play">Ir a itch.io</a>
+            <button class="btn-close" id="droppy-close-btn">Cerrar</button>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- VFX Section -->
-    <h2 class="section-title">VFX</h2>
+    <h2 class="section-title" id="vfx">VFX</h2>
 
     <div class="grid-vfx">
       <div class="vfx-item">
@@ -276,7 +363,7 @@
     </div>
 
     <!-- Learning Unity Section -->
-    <h2 class="section-title">Learning Unity</h2>
+    <h2 class="section-title" id="skills">Learning Unity</h2>
 
     <div class="grid">
       <!-- Snack Smash -->
@@ -311,7 +398,7 @@
     </div>
 
     <!-- Contact -->
-    <h2 class="contact-title">Contact</h2>
+    <h2 class="contact-title" id="contact">Contacto</h2>
     <p class="contact-sub">If you want to collaborate or learn more about my work, feel free to connect with me.</p>
 
     <div class="social-links">
@@ -322,5 +409,21 @@
     </div>
 
   </div>
+
+  <script>
+    const droppyDetailsBtn = document.getElementById('droppy-details-btn');
+    const droppyPopup = document.getElementById('droppy-popup');
+    const droppyCloseBtn = document.getElementById('droppy-close-btn');
+
+    droppyDetailsBtn.addEventListener('click', () => {
+      droppyPopup.classList.toggle('active');
+      droppyDetailsBtn.textContent = droppyPopup.classList.contains('active') ? 'Ocultar detalles' : 'Ver detalles';
+    });
+
+    droppyCloseBtn.addEventListener('click', () => {
+      droppyPopup.classList.remove('active');
+      droppyDetailsBtn.textContent = 'Ver detalles';
+    });
+  </script>
 </body>
 </html>
