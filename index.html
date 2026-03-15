@@ -163,6 +163,13 @@
       background: #ff414f;
     }
 
+    .project-popup .btn-play.btn-itch,
+    .project-popup .btn-close {
+      display: block;
+      margin: 10px auto 0;
+      text-align: center;
+    }
+
     /* ── HERO ── */
     .hero h1 {
       font-size: 48px;
@@ -356,6 +363,7 @@
 
     <!-- Hero -->
     <section class="hero">
+      <h2>About me</h2>
       <p>
         Game developer specialized in Unity and C#, focused on building dynamic and well-structured interactive
         experiences. I'm passionate about combining solid programming with strong visual design to create games that
@@ -381,18 +389,20 @@
           <p>Trabajo en environment, sistema de partículas, UI y C# para crear una experiencia suave y visualmente inmersiva.</p>
           <button class="btn-play" id="droppy-details-btn">Ver detalles</button>
           <div class="project-popup" id="droppy-popup">
-            <p>Droppy es un juego de plataformas estilo puzzle donde debes manejar recursos de energía, evitar obstáculos y guiar a tu personaje hasta el mar.</p>
+            <p>Droppy es una gotita de agua que, al no cuidarse, pierde su agua y desaparece, así que debes controlar su recurso hídrico mientras avanzas por plataformas con puzles.
+              Mantiene mecánicas de platformer y puzzle con estados de energía y recolección.</p>
             <div class="project-tags">
               <span class="project-tag">C#</span>
               <span class="project-tag">Real-Time VFX</span>
               <span class="project-tag">Environment</span>
               <span class="project-tag">UI</span>
             </div>
+            <h4>Contribuciones</h4>
             <div class="project-feature-list">
               <div class="project-feature-item">Sistema de environment dinámico</div>
               <div class="project-feature-item">Sistema de partículas</div>
-              <div class="project-feature-item">UI responsiva</div>
-              <div class="project-feature-item">Lógica de juego en C#</div>
+              <div class="project-feature-item">UI</div>
+              <div class="project-feature-item">C#</div>
             </div>
             <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play btn-itch">Jugar en itch.io</a>
             <button class="btn-close" id="droppy-close-btn">Cerrar</button>
