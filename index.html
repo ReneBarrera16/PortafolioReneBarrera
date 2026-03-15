@@ -15,11 +15,31 @@
       font-family: 'Segoe UI', sans-serif;
       color: white;
       line-height: 1.6;
-      background-color: #0a0a0a;
-      background-image: url('backgroundrene.jpg');
-      background-size: cover;
+      background: linear-gradient(120deg, #000000 0%, #ff1f4a 16%, #ff88c7 30%, #ba5be1 45%, #5b45ef 60%, #2f96ff 75%, #000000 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 10s ease-in-out infinite;
       background-attachment: fixed;
-      background-position: center;
+      filter: brightness(1.2);
+    }
+
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      12.5%  { background-position: 20% 50%; }
+      25%  { background-position: 40% 50%; }
+      37.5%  { background-position: 60% 50%; }
+      50%  { background-position: 80% 50%; }
+      62.5% { background-position: 100% 50%; }
+      75%  { background-position: 80% 50%; }
+      87.5% { background-position: 40% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes buttonShift {
+      0%   { --btn-main: #ff5aa5; --btn-main-hover: #ff93be; --btn-itch: #e9465c; --btn-itch-hover: #ff5f74; --btn-close: #3a3a3a; --btn-close-hover: #555; }
+      25%  { --btn-main: #ff3dba; --btn-main-hover: #ff7dd4; --btn-itch: #dd3466; --btn-itch-hover: #ff5580; --btn-close: #3f2a5c; --btn-close-hover: #6d3f7a; }
+      50%  { --btn-main: #ff3a98; --btn-main-hover: #ff6daf; --btn-itch: #ed2e55; --btn-itch-hover: #ff6673; --btn-close: #482533; --btn-close-hover: #7b4250; }
+      75%  { --btn-main: #ff68b4; --btn-main-hover: #ff9ed0; --btn-itch: #e54a5c; --btn-itch-hover: #ff7b85; --btn-close: #3c3647; --btn-close-hover: #5e4b66; }
+      100% { --btn-main: #ff5aa5; --btn-main-hover: #ff93be; --btn-itch: #e9465c; --btn-itch-hover: #ff5f74; --btn-close: #3a3a3a; --btn-close-hover: #555; }
     }
 
     /* Overlay oscuro para que el texto sea legible sobre el fondo */
@@ -47,6 +67,7 @@
       object-fit: cover;
       display: block;
       margin: 20px 0 40px;
+      filter: brightness(0.8);
     }
 
     .top-nav {
@@ -259,11 +280,11 @@
 
     /* Card */
     .card {
-      background: #111;
+      background: rgba(16, 8, 20, 0.86);
       border-radius: 15px;
       width: 320px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
       transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
       cursor: pointer;
     }
@@ -277,6 +298,12 @@
     .card img {
       width: 100%;
       display: block;
+      filter: brightness(0.8);
+      transition: filter 0.25s ease;
+    }
+
+    .card img:hover {
+      filter: brightness(0.9);
     }
 
     /* VFX Items */
@@ -298,6 +325,12 @@
     .vfx-item img {
       width: 100%;
       display: block;
+      filter: brightness(0.8);
+      transition: filter 0.25s ease;
+    }
+
+    .vfx-item img:hover {
+      filter: brightness(0.9);
     }
 
     .card-body {
@@ -318,7 +351,7 @@
     .btn-play {
       display: inline-block;
       padding: 10px 20px;
-      background: #ff4da6;
+      background: rgba(170, 40, 88, 0.86);
       color: white;
       text-decoration: none;
       border-radius: 8px;
@@ -327,7 +360,55 @@
     }
 
     .btn-play:hover {
+      background: rgba(220, 80, 138, 0.8);
+    }
+
+    .btn-itch {
+      background: rgba(150, 28, 48, 0.86);
+      border: 1px solid rgba(220, 100, 114, 0.6);
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    .btn-itch:hover {
+      background: rgba(210, 54, 76, 0.8);
+    }
+
+    .btn-close {
+      background: rgba(40, 40, 50, 0.86);
+      border: 1px solid rgba(90, 90, 100, 0.5);
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    .btn-close:hover {
+      background: rgba(70, 70, 80, 0.88);
+    }
+
+    .btn-play:hover {
       background: #ff80c0;
+    }
+
+    .btn-itch {
+      background: #e63946;
+      border: 1px solid #ff7b86;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    .btn-itch:hover {
+      background: #ff414f;
+    }
+
+    .btn-close {
+      background: #333;
+      border: 1px solid #555;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    .btn-close:hover {
+      background: #444;
     }
 
     /* ── CONTACT ── */
