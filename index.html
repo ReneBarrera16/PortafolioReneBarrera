@@ -202,6 +202,10 @@
       justify-items: center;
     }
 
+    .grid-skills {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
     /* VFX Grid - 3 columnas */
     .grid-vfx {
       display: grid;
@@ -386,16 +390,15 @@
         <img src="https://img.itch.zone/aW1nLzI2MDYxOTc0LnBuZw==/original/QNeDFe.png" alt="Droppy en busca del mar" />
         <div class="card-body">
           <h3>Droppy en busca del mar</h3>
-          <p>Trabajo en environment, sistema de partículas, UI y C# para crear una experiencia suave y visualmente inmersiva.</p>
+          <p>Sobrevive, recárgate y encuentra el camino hacia el mar.</p>
+          <div class="project-tags">
+            <span class="project-tag">C#</span>
+            <span class="project-tag">Real-Time VFX</span>
+            <span class="project-tag">Environment</span>
+            <span class="project-tag">UI</span>
+          </div>
           <button class="btn-play" id="droppy-details-btn">Ver detalles</button>
           <div class="project-popup" id="droppy-popup">
-            <p>Sobrevive, recárgate y encuentra el camino hacia el mar.</p>
-            <div class="project-tags">
-              <span class="project-tag">Sobrevive, recárgate y encuentra el camino hacia el mar.</span>
-              <span class="project-tag">Sobrevive, recárgate y encuentra el camino hacia el mar.</span>
-              <span class="project-tag">Sobrevive, recárgate y encuentra el camino hacia el mar.</span>
-              <span class="project-tag">Sobrevive, recárgate y encuentra el camino hacia el mar.</span>
-            </div>
             <h4>Contribuciones</h4>
             <div class="project-feature-list">
               <div class="project-feature-item">Sistema de environment dinámico</div>
@@ -426,9 +429,9 @@
     </div>
 
     <!-- Learning Unity Section -->
-    <h2 class="section-title" id="skills">Learning Unity</h2>
+    <h2 class="section-title" id="skills">Unity Learn</h2>
 
-    <div class="grid">
+    <div class="grid grid-skills">
       <!-- Snack Smash -->
       <div class="card">
         <img src="https://img.itch.zone/aW1nLzI1OTk3NjMwLnBuZw==/315x250%23c/cALvgU.png" alt="Snack Smash" />
