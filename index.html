@@ -108,10 +108,59 @@
       border-radius: 8px;
       color: #fff;
       cursor: pointer;
+      display: block;
+      width: fit-content;
     }
 
     .project-popup .btn-close:hover {
       background: #444;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 10px;
+      margin: 12px 0 16px;
+    }
+
+    .project-tag {
+      background: rgba(255, 77, 166, 0.2);
+      border: 1px solid #ff4da6;
+      border-radius: 999px;
+      color: #ff4da6;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 10px;
+      text-transform: uppercase;
+    }
+
+    .project-feature-list {
+      display: grid;
+      gap: 8px;
+      margin: 10px 0 12px;
+      text-align: left;
+    }
+
+    .project-feature-item {
+      background: rgba(255, 77, 166, 0.25);
+      border: 1px solid rgba(255, 77, 166, 0.7);
+      border-radius: 10px;
+      color: white;
+      padding: 8px 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .btn-itch {
+      background: #e63946;
+      border: 1px solid #ff7b86;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    .btn-itch:hover {
+      background: #ff414f;
     }
 
     /* ── HERO ── */
@@ -333,14 +382,19 @@
           <button class="btn-play" id="droppy-details-btn">Ver detalles</button>
           <div class="project-popup" id="droppy-popup">
             <p>Droppy es un juego de plataformas estilo puzzle donde debes manejar recursos de energía, evitar obstáculos y guiar a tu personaje hasta el mar.</p>
-            <p>En este proyecto implementé:</p>
-            <ul>
-              <li>Sistemas de environment dinámicos</li>
-              <li>Partículas para efectos de agua y viento</li>
-              <li>Interfaz UI responsive con estados de salud/energía</li>
-              <li>Lógica de juego con C# para mecánicas de recolección y puzles</li>
-            </ul>
-            <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play">Ir a itch.io</a>
+            <div class="project-tags">
+              <span class="project-tag">C#</span>
+              <span class="project-tag">Real-Time VFX</span>
+              <span class="project-tag">Environment</span>
+              <span class="project-tag">UI</span>
+            </div>
+            <div class="project-feature-list">
+              <div class="project-feature-item">Sistema de environment dinámico</div>
+              <div class="project-feature-item">Sistema de partículas</div>
+              <div class="project-feature-item">UI responsiva</div>
+              <div class="project-feature-item">Lógica de juego en C#</div>
+            </div>
+            <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play btn-itch">Jugar en itch.io</a>
             <button class="btn-close" id="droppy-close-btn">Cerrar</button>
           </div>
         </div>
@@ -348,7 +402,7 @@
     </div>
 
     <!-- VFX Section -->
-    <h2 class="section-title" id="vfx">VFX</h2>
+    <h2 class="section-title" id="vfx">Real-Time VFX</h2>
 
     <div class="grid-vfx">
       <div class="vfx-item">
