@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="IconoPage.png" />
   <title>René Barrera – Game Developer</title>
   <style>
     * {
@@ -312,6 +313,7 @@
     .vfx-item {
       width: 100%;
       max-width: 320px;
+      aspect-ratio: 1 / 1;
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
@@ -326,12 +328,27 @@
 
     .vfx-item img {
       width: 100%;
+      height: 100%;
       display: block;
+      object-fit: cover;
       filter: brightness(0.8);
       transition: filter 0.25s ease;
     }
 
     .vfx-item img:hover {
+      filter: brightness(0.9);
+    }
+
+    .vfx-item video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: brightness(0.8);
+      transition: filter 0.25s ease;
+    }
+
+    .vfx-item video:hover {
       filter: brightness(0.9);
     }
 
@@ -522,13 +539,15 @@
 
     <div class="grid-vfx">
       <div class="vfx-item">
-        <img src="VFX - 1.jpg" alt="VFX 1" />
+        <video autoplay loop muted playsinline>
+          <source src="VFX-video.mp4" type="video/mp4" />
+        </video>
       </div>
       <div class="vfx-item">
-        <img src="VFX - 2.jpg" alt="VFX 2" />
+        <img src="VFX-Ray.gif" alt="VFX Ray" />
       </div>
       <div class="vfx-item">
-        <img src="VFX - 3.jpg" alt="VFX 3" />
+        <img src="VFX-Snow.gif" alt="VFX Snow" />
       </div>
     </div>
 
