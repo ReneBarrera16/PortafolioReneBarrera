@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:hugo.fyi)",
+      "WebFetch(domain:gerlogu.com)",
+      "WebFetch(domain:janreeh.com)",
+      "Bash(curl -s https://gerlogu.com/)",
+      "Bash(curl -s \"https://gerlogu.com/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInUp.css\")",
+      "Bash(curl -s \"https://gerlogu.com/wp-content/uploads/elementor/css/post-5.css\")",
+      "Bash(curl -s \"https://gerlogu.com/wp-content/uploads/essential-addons-elementor/eael-22.css\")",
+      "Bash(curl -s \"https://gerlogu.com/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/js/view/general.min.js\")",
+      "Bash(curl -s \"https://gerlogu.com/wp-content/uploads/essential-addons-elementor/eael-22.js\")"
+    ]
+  }
+}

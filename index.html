@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="IconoPage.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet" />
   <title>René Barrera – Game Developer</title>
   <style>
     * {
@@ -13,35 +16,73 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
       color: white;
       line-height: 1.6;
-      background: linear-gradient(120deg, #000000 0%, #ff1f4a 16%, #ff88c7 30%, #ba5be1 45%, #5b45ef 60%, #2f96ff 75%, #000000 100%);
-      background-size: 200% 200%;
-      animation: gradientShift 10s ease-in-out infinite;
-      background-attachment: fixed;
-      filter: brightness(1.08);
+      background: #06000d;
     }
 
-    @keyframes gradientShift {
-      0%   { background-position: 0% 50%; }
-      12.5%  { background-position: 20% 50%; }
-      25%  { background-position: 40% 50%; }
-      37.5%  { background-position: 60% 50%; }
-      50%  { background-position: 80% 50%; }
-      62.5% { background-position: 100% 50%; }
-      75%  { background-position: 80% 50%; }
-      87.5% { background-position: 40% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Overlay oscuro para que el texto sea legible sobre el fondo */
-    body::before {
-      content: '';
+    /* ── BLOBS DE FONDO ── */
+    .bg-blobs {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.55);
       z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.5;
+    }
+
+    .blob-1 {
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, #d4006a 0%, transparent 70%);
+      top: -200px;
+      left: -150px;
+      animation: blob1 12s ease-in-out infinite alternate;
+    }
+
+    .blob-2 {
+      width: 750px;
+      height: 750px;
+      background: radial-gradient(circle, #3300cc 0%, transparent 70%);
+      bottom: -250px;
+      right: -150px;
+      animation: blob2 15s ease-in-out infinite alternate;
+    }
+
+    .blob-3 {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, #0044ff 0%, transparent 70%);
+      top: 45%;
+      left: 55%;
+      opacity: 0.3;
+      animation: blob3 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes blob1 {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(260px, 180px) scale(1.15); }
+      66%  { transform: translate(100px, 320px) scale(0.9); }
+      100% { transform: translate(380px, 90px) scale(1.1); }
+    }
+
+    @keyframes blob2 {
+      0%   { transform: translate(0, 0) scale(1); }
+      40%  { transform: translate(-200px, -130px) scale(1.2); }
+      100% { transform: translate(-320px, -220px) scale(0.85); }
+    }
+
+    @keyframes blob3 {
+      0%   { transform: translate(-50%, 0) scale(1); }
+      50%  { transform: translate(-30%, -15%) scale(1.3); }
+      100% { transform: translate(-70%, 10%) scale(0.8); }
     }
 
     .wrapper {
@@ -66,7 +107,10 @@
     .top-nav {
       position: relative;
       margin: 20px auto 0;
-      background: rgba(17, 17, 17, 0.72);
+      background: rgba(10, 0, 20, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 77, 166, 0.18);
       border-radius: 14px;
       padding: 10px 0;
       z-index: 2;
@@ -96,7 +140,11 @@
 
     .project-popup {
       display: none;
-      margin-top: 14px;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      z-index: 50;
       background: rgba(25, 25, 25, 0.96);
       padding: 16px;
       border-radius: 12px;
@@ -185,15 +233,82 @@
     }
 
     /* ── HERO ── */
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .hero {
+      padding-top: 20px;
+    }
+
+    @keyframes nameColorFlow {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+
+    .hero-name {
+      font-size: 110px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+      background: linear-gradient(90deg,
+        #ffffff 0%,
+        #ff4da6 18%,
+        #b57bff 36%,
+        #4499ff 54%,
+        #ff4da6 72%,
+        #ffffff 90%
+      );
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0;
+      animation: fadeInUp 0.9s ease 0.1s forwards, nameColorFlow 10s linear 1.2s infinite;
+    }
+
+    .hero-role-wrapper {
+      font-size: 22px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 52px;
+      min-height: 34px;
+      opacity: 0;
+      animation: fadeInUp 0.9s ease 0.5s forwards;
+    }
+
+    #typewriter-text {
+      color: #ff4da6;
+      font-weight: 700;
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1em;
+      background: #ff4da6;
+      margin-left: 3px;
+      vertical-align: text-bottom;
+      animation: blink 0.7s ease infinite;
+    }
+
+    .hero-bio {
+      opacity: 0;
+      animation: fadeInUp 0.9s ease 0.9s forwards;
     }
 
     .hero h2 {
-      font-size: 52px;
-      margin-bottom: 22px;
-      letter-spacing: 0.02em;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
     }
 
     .hero h3 {
@@ -207,6 +322,78 @@
       font-size: 18px;
       margin: 0 auto 20px;
       opacity: 0.9;
+    }
+
+    /* ── PROJECT QUOTE ── */
+    .projects-quote {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 760px;
+      margin: 0 auto 52px;
+      font-style: italic;
+    }
+
+    .projects-quote em {
+      color: #ff4da6;
+      font-style: normal;
+    }
+
+    /* ── PROJECT CARD OVERLAY ── */
+    .card-image-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+    }
+
+    .card-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: unset;
+      filter: brightness(0.72);
+      transition: transform 0.45s ease, filter 0.45s ease;
+    }
+
+    .card:hover .card-image-wrap img {
+      transform: scale(1.06);
+      filter: brightness(0.35);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.15) 55%, transparent 100%);
+    }
+
+    .card-overlay-always h3 {
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+    }
+
+    .card-overlay-hover {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.38s ease, opacity 0.3s ease;
+    }
+
+    .card:hover .card-overlay-hover {
+      max-height: 160px;
+      opacity: 1;
+    }
+
+    .card-overlay .project-tags {
+      justify-content: flex-start;
+      margin: 10px 0 12px;
     }
 
     /* ── PROJECTS ── */
@@ -224,6 +411,85 @@
 
     .projects-grid {
       grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .projects-grid .card {
+      width: 100%;
+    }
+
+    /* ── HORIZONTAL PROJECT CARD ── */
+    .project-card {
+      display: flex;
+      flex-direction: row;
+      min-height: 220px;
+      border-radius: 16px;
+      overflow: visible;
+      background: rgba(16, 8, 24, 0.92);
+    }
+
+    .project-card:hover {
+      background: rgba(22, 8, 32, 0.95);
+      box-shadow: 0 0 35px rgba(255, 77, 166, 0.55), 0 12px 30px rgba(0, 0, 0, 0.5);
+      transform: translateY(-5px);
+    }
+
+    .project-card--reverse {
+      flex-direction: row-reverse;
+    }
+
+    .project-card-image {
+      flex: 0 0 42%;
+      overflow: hidden;
+      border-radius: 16px 0 0 16px;
+    }
+
+    .project-card--reverse .project-card-image {
+      border-radius: 0 16px 16px 0;
+    }
+
+    .project-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: transform 0.45s ease, filter 0.45s ease;
+      aspect-ratio: unset;
+    }
+
+    .project-card:hover .project-card-image img {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+
+    .project-card-info {
+      flex: 1;
+      padding: 28px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .project-card-info h3 {
+      color: white;
+      font-size: 21px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .project-card-info p {
+      font-size: 14px;
+      opacity: 0.75;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .project-card-info .project-tags {
+      justify-content: flex-start;
+      margin: 0;
     }
 
     .grid-skills {
@@ -232,7 +498,7 @@
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 18px;
       margin-bottom: 40px;
       text-align: left;
@@ -286,7 +552,8 @@
       background: rgba(16, 8, 20, 0.86);
       border-radius: 15px;
       width: 320px;
-      overflow: hidden;
+      overflow: visible;
+      position: relative;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
       transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
       cursor: pointer;
@@ -300,13 +567,15 @@
 
     .card img {
       width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
       display: block;
       filter: brightness(0.8);
       transition: filter 0.25s ease;
     }
 
     .card img:hover {
-      filter: brightness(0.9);
+      filter: brightness(1);
     }
 
     /* VFX Items */
@@ -393,6 +662,12 @@
       background: rgba(210, 54, 76, 0.8);
     }
 
+    .project-card-info .btn-itch {
+      font-size: 12px;
+      padding: 7px 16px;
+      align-self: center;
+    }
+
     .btn-close {
       background: rgba(40, 40, 50, 0.86);
       border: 1px solid rgba(90, 90, 100, 0.5);
@@ -450,6 +725,10 @@
         grid-template-columns: 1fr;
       }
 
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
       .card {
         width: 100%;
         max-width: 360px;
@@ -460,17 +739,43 @@
         max-width: 360px;
       }
 
-      .hero h1 {
-        font-size: 34px;
+      .hero-name {
+        font-size: 52px;
+      }
+
+      .projects-quote {
+        font-size: 20px;
+      }
+
+      .project-card,
+      .project-card--reverse {
+        flex-direction: column;
+      }
+
+      .project-card-image,
+      .project-card--reverse .project-card-image {
+        flex: none;
+        height: 200px;
+        border-radius: 16px 16px 0 0;
+      }
+
+      .project-card-info {
+        padding: 20px;
       }
 
       .hero h2 {
-        font-size: 40px;
+        font-size: 26px;
       }
     }
   </style>
 </head>
 <body>
+  <div class="bg-blobs" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
   <div class="wrapper">
 
     <!-- Navegación principal -->
@@ -483,55 +788,90 @@
       </ul>
     </nav>
 
-    <!-- Banner -->
-    <img src="BannerRene.png" alt="René Barrera Banner" class="banner" />
-
     <!-- Hero -->
     <section class="hero">
-      <h2>About me</h2>
-      <p>
-        Game developer specialized in Unity and C#, focused on building dynamic and well-structured interactive
-        experiences. I'm passionate about combining solid programming with strong visual design to create games that
-        feel smooth, responsive, and engaging.
+      <h1 class="hero-name">René Barrera</h1>
+      <p class="hero-role-wrapper">
+        <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
       </p>
-      <p>
-        I have experience working with real-time VFX and Shader Graph in Unity, exploring how visual systems and
-        gameplay logic can work together to enhance player immersion. I enjoy tackling technical challenges that require
-        optimizing mechanics, improving performance, and refining every detail to deliver polished and functional
-        experiences.
-      </p>
+      <div class="hero-bio">
+        <h2>About me</h2>
+        <p>
+          Game developer specialized in Unity and C#, focused on building dynamic and well-structured interactive
+          experiences. I'm passionate about combining solid programming with strong visual design to create games that
+          feel smooth, responsive, and engaging.
+        </p>
+        <p>
+          I have experience working with real-time VFX and Shader Graph in Unity, exploring how visual systems and
+          gameplay logic can work together to enhance player immersion. I enjoy tackling technical challenges that require
+          optimizing mechanics, improving performance, and refining every detail to deliver polished and functional
+          experiences.
+        </p>
+      </div>
     </section>
 
     <!-- Projects -->
     <h2 class="section-title" id="proyectos">Projects</h2>
 
+    <p class="projects-quote">
+      Every game I built taught me something new — every bug, every mechanic, every effect that <em>finally clicked</em>.
+    </p>
+
     <div class="grid projects-grid">
       <!-- Droppy -->
-      <div class="card" id="droppy-card">
-        <img src="https://img.itch.zone/aW1nLzI2MDYxOTc0LnBuZw==/original/QNeDFe.png" alt="Droppy: In Search of the Sea" />
-        <div class="card-body">
+      <div class="card project-card" id="droppy-card">
+        <div class="project-card-image">
+          <img src="https://img.itch.zone/aW1nLzI2MDYxOTc0LnBuZw==/original/QNeDFe.png" alt="Droppy: In Search of the Sea" />
+        </div>
+        <div class="project-card-info">
           <h3>Droppy: In Search of the Sea</h3>
-          <p>Survive, recharge, and find the path to the sea.</p>
+          <p>In this project, I contributed to environment design, UI implementation, and gameplay programming, along with creating real-time VFX to enhance the player experience. It was a challenging and enriching process that helped me strengthen both my technical and creative skills in Unity.</p>
           <div class="project-tags">
             <span class="project-tag">C#</span>
             <span class="project-tag">Real-Time VFX</span>
             <span class="project-tag">Environment</span>
             <span class="project-tag">UI</span>
           </div>
-          <button class="btn-play" id="droppy-details-btn">View Details</button>
-          <div class="project-popup" id="droppy-popup">
-            <h4>Contributions</h4>
-            <div class="project-feature-list">
-              <div class="project-feature-item">Dynamic environment system</div>
-              <div class="project-feature-item">Particle system</div>
-              <div class="project-feature-item">UI</div>
-              <div class="project-feature-item">C#</div>
-            </div>
-            <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play btn-itch">Play on itch.io</a>
-            <button class="btn-close" id="droppy-close-btn">Close</button>
-          </div>
+          <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play btn-itch">Play on itch.io</a>
         </div>
       </div>
+
+      <!-- Baiquimu -->
+      <div class="card project-card project-card--reverse" id="brujita-card">
+        <div class="project-card-image">
+          <img src="https://img.itch.zone/aW1nLzI2NDAxMzExLnBuZw==/315x250%23c/P2hs8N.png" alt="Baiquimu" />
+        </div>
+        <div class="project-card-info">
+          <h3>Baiquimu</h3>
+          <p>I worked as a C# programmer, developing core gameplay mechanics and contributing to UI systems and ability-based VFX. This project was a challenging experience that pushed me to improve my problem-solving skills and refine my approach to gameplay implementation.</p>
+          <div class="project-tags">
+            <span class="project-tag">C#</span>
+            <span class="project-tag">Programming</span>
+            <span class="project-tag">UI</span>
+            <span class="project-tag">VFX</span>
+          </div>
+          <a href="https://andreagranados.itch.io/baiquimu" target="_blank" class="btn-play btn-itch">Play on itch.io</a>
+        </div>
+      </div>
+
+      <!-- Mi Querido Engendro -->
+      <div class="card project-card" id="engendro-card">
+        <div class="project-card-image">
+          <img src="https://img.itch.zone/aW1nLzI2MzU0ODkyLnBuZw==/315x250%23c/R8Msch.png" alt="Mi Querido Engendro" />
+        </div>
+        <div class="project-card-info">
+          <h3>Mi Querido Engendro</h3>
+          <p>As the Lead Programmer, I was responsible for designing and implementing core systems, as well as creating supporting VFX to enhance the overall user experience. This was a highly challenging and rewarding project that strengthened my leadership and technical skills in game development.</p>
+          <div class="project-tags">
+            <span class="project-tag">C#</span>
+            <span class="project-tag">Lead Programming</span>
+            <span class="project-tag">VFX</span>
+            <span class="project-tag">GitHub</span>
+          </div>
+          <a href="https://juan-becerra.itch.io/my-little-abomination" target="_blank" class="btn-play btn-itch">Play on itch.io</a>
+        </div>
+      </div>
+
     </div>
 
     <!-- VFX Section -->
@@ -539,15 +879,22 @@
 
     <div class="grid-vfx">
       <div class="vfx-item">
-        <video autoplay loop muted playsinline>
-          <source src="VFX-video.mp4" type="video/mp4" />
-        </video>
+        <img src="Starts.gif" alt="Stars VFX" />
       </div>
       <div class="vfx-item">
-        <img src="VFX-Ray.gif" alt="VFX Ray" />
+        <img src="LuzExplote.gif" alt="Luz Explote VFX" />
       </div>
       <div class="vfx-item">
-        <img src="VFX-Snow.gif" alt="VFX Snow" />
+        <img src="FireExplote.gif" alt="Fire Explote VFX" />
+      </div>
+      <div class="vfx-item">
+        <img src="HaloFuente.gif" alt="Halo Fuente VFX" />
+      </div>
+      <div class="vfx-item">
+        <img src="FireBall and Light.gif" alt="Fireball and Light VFX" />
+      </div>
+      <div class="vfx-item">
+        <img src="Exorcizar.gif" alt="Exorcizar VFX" />
       </div>
     </div>
 
@@ -555,17 +902,14 @@
     <h2 class="section-title" id="skills">Skills</h2>
     <div class="skills-grid">
       <div class="skills-column">
-        <h3>Game Developer</h3>
+        <h3>Game Development & Programming</h3>
+        <span class="skill-tag">C#</span>
         <span class="skill-tag">Gameplay Programming</span>
         <span class="skill-tag">Physics</span>
         <span class="skill-tag">VFX</span>
         <span class="skill-tag">Shaders</span>
         <span class="skill-tag">UI/UX Design</span>
         <span class="skill-tag">Narrative Design</span>
-      </div>
-      <div class="skills-column">
-        <h3>Programming</h3>
-        <span class="skill-tag">C#</span>
       </div>
       <div class="skills-column">
         <h3>Tools</h3>
@@ -583,7 +927,7 @@
     <div class="grid grid-skills">
       <!-- Snack Smash -->
       <div class="card">
-        <img src="https://img.itch.zone/aW1nLzI1OTk3NjMwLnBuZw==/315x250%23c/cALvgU.png" alt="Snack Smash" />
+        <img src="SnackSmash.png" alt="Snack Smash" />
         <div class="card-body">
           <h3>Snack Smash</h3>
           <p>A fast-paced food smashing game where reflexes are everything.</p>
@@ -593,7 +937,7 @@
 
       <!-- Food Rush -->
       <div class="card">
-        <img src="https://img.itch.zone/aW1nLzI1OTI2NTQxLnBuZw==/315x250%23c/qsaZP5.png" alt="Food Rush Clicker" />
+        <img src="Food Rush.png" alt="Food Rush Clicker" />
         <div class="card-body">
           <h3>Food Rush Clicker</h3>
           <p>Click and grow your food empire in this fast incremental game.</p>
@@ -603,7 +947,7 @@
 
       <!-- Sé un balón -->
       <div class="card">
-        <img src="https://img.itch.zone/aW1nLzI1OTAxODQyLnBuZw==/315x250%23c/BktcyI.png" alt="Be a Ball" />
+        <img src="BeABall.png" alt="Be a Ball" />
         <div class="card-body">
           <h3>Be a Ball</h3>
           <p>Control a soccer ball and overcome obstacles in this fun challenge.</p>
@@ -626,19 +970,39 @@
   </div>
 
   <script>
-    const droppyDetailsBtn = document.getElementById('droppy-details-btn');
-    const droppyPopup = document.getElementById('droppy-popup');
-    const droppyCloseBtn = document.getElementById('droppy-close-btn');
 
-    droppyDetailsBtn.addEventListener('click', () => {
-      droppyPopup.classList.toggle('active');
-      droppyDetailsBtn.textContent = droppyPopup.classList.contains('active') ? 'Hide Details' : 'View Details';
-    });
+    // ── TYPEWRITER ──
+    (function () {
+      const el = document.getElementById('typewriter-text');
+      const phrases = ['Game Developer', 'VFX Artist', 'Unity / C# Dev'];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
 
-    droppyCloseBtn.addEventListener('click', () => {
-      droppyPopup.classList.remove('active');
-      droppyDetailsBtn.textContent = 'View Details';
-    });
+      function tick() {
+        const phrase = phrases[phraseIndex];
+        el.textContent = deleting
+          ? phrase.slice(0, charIndex - 1)
+          : phrase.slice(0, charIndex + 1);
+
+        if (!deleting) charIndex++;
+        else charIndex--;
+
+        let delay = deleting ? 40 : 80;
+
+        if (!deleting && charIndex === phrase.length) {
+          delay = 1800;
+          deleting = true;
+        } else if (deleting && charIndex === 0) {
+          deleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+
+        setTimeout(tick, delay);
+      }
+
+      setTimeout(tick, 1400);
+    })();
   </script>
 </body>
 </html>
