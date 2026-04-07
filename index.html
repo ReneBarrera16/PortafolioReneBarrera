@@ -90,7 +90,7 @@
       z-index: 1;
       max-width: 1100px;
       margin: auto;
-      padding: 0 20px 60px;
+      padding: 80px 20px 60px;
       text-align: center;
     }
 
@@ -105,15 +105,46 @@
     }
 
     .top-nav {
-      position: relative;
-      margin: 20px auto 0;
-      background: rgba(10, 0, 20, 0.5);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 77, 166, 0.18);
-      border-radius: 14px;
-      padding: 10px 0;
-      z-index: 2;
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: fit-content;
+      min-width: 420px;
+      max-width: 90vw;
+
+      /* Liquid glass */
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.10) 0%,
+        rgba(255, 77, 166, 0.08) 50%,
+        rgba(120, 80, 255, 0.10) 100%
+      );
+      backdrop-filter: blur(24px) saturate(180%) brightness(1.08);
+      -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.08);
+
+      /* Bordes y brillo tipo vidrio */
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-top: 1px solid rgba(255, 255, 255, 0.38);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      padding: 10px 24px;
+      z-index: 1000;
+
+      /* Sombra líquida */
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.35),
+        0 2px 8px rgba(255, 77, 166, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    .top-nav:hover {
+      box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.45),
+        0 4px 16px rgba(255, 77, 166, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
     }
 
     .top-nav ul {
@@ -136,6 +167,17 @@
 
     .top-nav a:hover {
       background: rgba(255, 77, 166, 0.35);
+    }
+
+    .top-nav a.cv-link {
+      border: 2px solid #ff4da6;
+      color: #ff4da6;
+      padding: 6px 14px;
+    }
+
+    .top-nav a.cv-link:hover {
+      background: #ff4da6;
+      color: white;
     }
 
     .project-popup {
@@ -423,15 +465,40 @@
       display: flex;
       flex-direction: row;
       min-height: 220px;
-      border-radius: 16px;
-      overflow: visible;
-      background: rgba(16, 8, 24, 0.92);
     }
 
-    .project-card:hover {
-      background: rgba(22, 8, 32, 0.95);
-      box-shadow: 0 0 35px rgba(255, 77, 166, 0.55), 0 12px 30px rgba(0, 0, 0, 0.5);
-      transform: translateY(-5px);
+    .card.project-card {
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.10) 0%,
+        rgba(255, 77, 166, 0.07) 50%,
+        rgba(120, 60, 220, 0.09) 100%
+      );
+      backdrop-filter: blur(20px) saturate(170%) brightness(1.06);
+      -webkit-backdrop-filter: blur(20px) saturate(170%) brightness(1.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 1px solid rgba(255, 255, 255, 0.32);
+      box-shadow:
+        0 10px 36px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(255, 77, 166, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    .card.project-card:hover {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.14) 0%,
+        rgba(255, 77, 166, 0.12) 50%,
+        rgba(120, 60, 220, 0.13) 100%
+      );
+      transform: translateY(-6px);
+      box-shadow:
+        0 18px 48px rgba(0, 0, 0, 0.5),
+        0 4px 16px rgba(255, 77, 166, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
     }
 
     .project-card--reverse {
@@ -441,11 +508,11 @@
     .project-card-image {
       flex: 0 0 42%;
       overflow: hidden;
-      border-radius: 16px 0 0 16px;
+      border-radius: 22px 0 0 22px;
     }
 
     .project-card--reverse .project-card-image {
-      border-radius: 0 16px 16px 0;
+      border-radius: 0 22px 22px 0;
     }
 
     .project-card-image img {
@@ -496,41 +563,186 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-bottom: 40px;
-      text-align: left;
-      justify-items: stretch;
+    /* ── UNITY LEARN CARDS — liquid glass ── */
+    .grid-skills .card {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.10) 0%,
+        rgba(255, 77, 166, 0.07) 50%,
+        rgba(120, 60, 220, 0.09) 100%
+      );
+      backdrop-filter: blur(20px) saturate(170%) brightness(1.06);
+      -webkit-backdrop-filter: blur(20px) saturate(170%) brightness(1.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 1px solid rgba(255, 255, 255, 0.32);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow:
+        0 10px 36px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(255, 77, 166, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .skills-column {
-      background: rgba(17, 17, 17, 0.6);
-      border: 1px solid #33001e;
-      border-radius: 14px;
-      padding: 14px;
-      min-height: 240px;
+    .grid-skills .card:hover {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.14) 0%,
+        rgba(255, 77, 166, 0.12) 50%,
+        rgba(120, 60, 220, 0.13) 100%
+      );
+      transform: translateY(-8px);
+      box-shadow:
+        0 18px 48px rgba(0, 0, 0, 0.5),
+        0 4px 16px rgba(255, 77, 166, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
     }
 
-    .skills-column h3 {
-      margin: 0 0 10px;
-      color: #ff80c0;
-      font-size: 16px;
+    .grid-skills .card img {
+      border-radius: 18px 18px 0 0;
+      aspect-ratio: 16 / 9;
+    }
+
+    /* ── SKILLS ORBIT ── */
+    .skills-subtitle {
       text-align: center;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 15px;
+      max-width: 560px;
+      margin: -16px auto 44px;
+      line-height: 1.7;
+      font-style: italic;
     }
 
-    .skill-tag {
-      display: inline-block;
-      margin: 4px 6px 4px 0;
-      background: rgba(255, 77, 166, 0.28);
-      border: 1px solid #ff4da6;
-      border-radius: 999px;
-      color: #ff4da6;
-      padding: 6px 10px;
-      font-size: 12px;
-      font-weight: 700;
+    .skills-orbits-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .skills-orbit-wrap {
+      position: relative;
+      width: 440px;
+      height: 440px;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .orbit-ring-track {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 77, 166, 0.2);
+      pointer-events: none;
+    }
+
+    .orbit-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%,
+        rgba(255, 77, 166, 0.55),
+        rgba(120, 60, 220, 0.35));
+      border: 2px solid rgba(255, 77, 166, 0.55);
+      box-shadow:
+        0 0 28px rgba(255, 77, 166, 0.35),
+        0 0 60px rgba(120, 60, 220, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .orbit-center-label {
+      font-size: 10px;
+      font-weight: 900;
+      color: white;
       text-transform: uppercase;
+      letter-spacing: 0.07em;
+      line-height: 1.4;
+    }
+
+    .orbit-card {
+      position: absolute;
+      width: 110px;
+      height: 78px;
+      border-radius: 14px;
+      background: linear-gradient(
+        140deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(20, 10, 40, 0.55) 100%
+      );
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-top: 1px solid rgba(255, 255, 255, 0.26);
+      box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: default;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      z-index: 5;
+    }
+
+    .orbit-card:hover {
+      transform: translateX(var(--ox, 0px)) translateY(var(--oy, 0px)) scale(1.15) !important;
+      box-shadow:
+        0 8px 36px rgba(0, 0, 0, 0.5),
+        0 0 20px var(--accent, #ff4da6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      border-color: var(--accent, #ff4da6);
+    }
+
+    .orbit-abbr {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--accent, #ff4da6);
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+
+    .orbit-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.75);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      line-height: 1.25;
+      padding: 0 8px;
+    }
+
+    @media (max-width: 960px) {
+      .skills-orbits-row {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .skills-orbit-wrap {
+        transform: scale(0.72);
+        transform-origin: top center;
+        margin-bottom: -80px;
+      }
     }
 
     @media (max-width: 720px) {
@@ -539,12 +751,126 @@
       }
     }
 
-    /* VFX Grid - 3 columnas */
-    .grid-vfx {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      justify-items: center;
+    /* ── VFX 3D CAROUSEL ── */
+    .vfx-carousel {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+
+    .vfx-stage {
+      position: relative;
+      width: 100%;
+      height: 340px;
+      perspective: 1100px;
+      transform-style: preserve-3d;
+      overflow: hidden;
+    }
+
+    .vfx-card {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      top: 50%;
+      left: 50%;
+      border-radius: 22px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity  0.55s ease,
+                  box-shadow 0.3s ease;
+      transform-origin: center center;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .vfx-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+
+    .vfx-card-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 40px 18px 18px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.3;
+      pointer-events: none;
+    }
+
+    .vfx-card.is-active {
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7),
+                  0 0 40px rgba(255, 77, 166, 0.2);
+    }
+
+    /* Flechas */
+    .vfx-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 77, 166, 0.08)
+      );
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vfx-arrow:hover {
+      background: rgba(255, 77, 166, 0.3);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .vfx-arrow-left  { left:  4px; }
+    .vfx-arrow-right { right: 4px; }
+
+    /* Dots */
+    .vfx-dots {
+      position: absolute;
+      bottom: -36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .vfx-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .vfx-dot.active {
+      background: #ff4da6;
+      transform: scale(1.3);
     }
 
     /* Card */
@@ -578,48 +904,6 @@
       filter: brightness(1);
     }
 
-    /* VFX Items */
-    .vfx-item {
-      width: 100%;
-      max-width: 320px;
-      aspect-ratio: 1 / 1;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .vfx-item:hover {
-      box-shadow: 0 0 30px rgba(255, 77, 166, 0.7), 0 10px 25px rgba(0, 0, 0, 0.5);
-      transform: translateY(-6px);
-    }
-
-    .vfx-item img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      filter: brightness(0.8);
-      transition: filter 0.25s ease;
-    }
-
-    .vfx-item img:hover {
-      filter: brightness(0.9);
-    }
-
-    .vfx-item video {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      filter: brightness(0.8);
-      transition: filter 0.25s ease;
-    }
-
-    .vfx-item video:hover {
-      filter: brightness(0.9);
-    }
 
     .card-body {
       padding: 20px;
@@ -679,6 +963,83 @@
       background: rgba(70, 70, 80, 0.88);
     }
 
+    /* ── LANGUAGE TOGGLE ── */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .lang-toggle:hover {
+      border-color: rgba(255, 77, 166, 0.5);
+    }
+
+    .lang-opt {
+      font-size: 11px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.38);
+      padding: 2px 5px;
+      border-radius: 999px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .lang-opt.active {
+      color: white;
+      background: rgba(255, 77, 166, 0.38);
+    }
+
+    .lang-sep {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 11px;
+      user-select: none;
+    }
+
+    /* Botón flotante */
+    .lang-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.10) 0%,
+        rgba(255, 77, 166, 0.08) 50%,
+        rgba(120, 80, 255, 0.10) 100%
+      );
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-top: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      padding: 10px 18px;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow:
+        0 6px 24px rgba(0, 0, 0, 0.3),
+        0 2px 8px rgba(255, 77, 166, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+
+    .lang-float:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 10px 32px rgba(0, 0, 0, 0.4),
+        0 4px 14px rgba(255, 77, 166, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
     /* ── CONTACT ── */
     .contact-title {
       font-size: 36px;
@@ -721,9 +1082,6 @@
         grid-template-columns: 1fr;
       }
 
-      .grid-vfx {
-        grid-template-columns: 1fr;
-      }
 
       .projects-grid {
         grid-template-columns: 1fr;
@@ -734,10 +1092,6 @@
         max-width: 360px;
       }
 
-      .vfx-item {
-        width: 100%;
-        max-width: 360px;
-      }
 
       .hero-name {
         font-size: 52px;
@@ -776,17 +1130,25 @@
     <div class="blob blob-3"></div>
   </div>
 
-  <div class="wrapper">
+  <!-- Navegación principal (fixed, fuera del wrapper) -->
+  <nav class="top-nav">
+    <ul>
+      <li><a href="#proyectos" data-i18n="nav-projects">Projects</a></li>
+      <li><a href="#vfx">VFX</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+      <li><a href="Rene Barrera CV - Portafolio.pdf" target="_blank" class="cv-link">CV</a></li>
+      <li>
+        <button class="lang-toggle" id="langToggleNav" aria-label="Cambiar idioma">
+          <span class="lang-opt active" data-l="en">EN</span>
+          <span class="lang-sep">|</span>
+          <span class="lang-opt" data-l="es">ES</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
 
-    <!-- Navegación principal -->
-    <nav class="top-nav">
-      <ul>
-        <li><a href="#proyectos">Projects</a></li>
-        <li><a href="#vfx">VFX</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <div class="wrapper">
 
     <!-- Hero -->
     <section class="hero">
@@ -795,13 +1157,13 @@
         <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
       </p>
       <div class="hero-bio">
-        <h2>About me</h2>
-        <p>
+        <h2 data-i18n="hero-about">About me</h2>
+        <p data-i18n="hero-bio-1">
           Game developer specialized in Unity and C#, focused on building dynamic and well-structured interactive
           experiences. I'm passionate about combining solid programming with strong visual design to create games that
           feel smooth, responsive, and engaging.
         </p>
-        <p>
+        <p data-i18n="hero-bio-2">
           I have experience working with real-time VFX and Shader Graph in Unity, exploring how visual systems and
           gameplay logic can work together to enhance player immersion. I enjoy tackling technical challenges that require
           optimizing mechanics, improving performance, and refining every detail to deliver polished and functional
@@ -811,9 +1173,9 @@
     </section>
 
     <!-- Projects -->
-    <h2 class="section-title" id="proyectos">Projects</h2>
+    <h2 class="section-title" id="proyectos" data-i18n="nav-projects">Projects</h2>
 
-    <p class="projects-quote">
+    <p class="projects-quote" data-i18n="projects-quote">
       Every game I built taught me something new — every bug, every mechanic, every effect that <em>finally clicked</em>.
     </p>
 
@@ -825,14 +1187,14 @@
         </div>
         <div class="project-card-info">
           <h3>Droppy: In Search of the Sea</h3>
-          <p>In this project, I contributed to environment design, UI implementation, and gameplay programming, along with creating real-time VFX to enhance the player experience. It was a challenging and enriching process that helped me strengthen both my technical and creative skills in Unity.</p>
+          <p data-i18n="droppy-desc">In this project, I contributed to environment design, UI implementation, and gameplay programming, along with creating real-time VFX to enhance the player experience. It was a challenging and enriching process that helped me strengthen both my technical and creative skills in Unity.</p>
           <div class="project-tags">
             <span class="project-tag">C#</span>
             <span class="project-tag">Real-Time VFX</span>
             <span class="project-tag">Environment</span>
             <span class="project-tag">UI</span>
           </div>
-          <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play btn-itch">Play on itch.io</a>
+          <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play btn-itch" data-i18n="play-itch">Play on itch.io</a>
         </div>
       </div>
 
@@ -843,14 +1205,14 @@
         </div>
         <div class="project-card-info">
           <h3>Baiquimu</h3>
-          <p>I worked as a C# programmer, developing core gameplay mechanics and contributing to UI systems and ability-based VFX. This project was a challenging experience that pushed me to improve my problem-solving skills and refine my approach to gameplay implementation.</p>
+          <p data-i18n="baiquimu-desc">I worked as a C# programmer, developing core gameplay mechanics and contributing to UI systems and ability-based VFX. This project was a challenging experience that pushed me to improve my problem-solving skills and refine my approach to gameplay implementation.</p>
           <div class="project-tags">
             <span class="project-tag">C#</span>
             <span class="project-tag">Programming</span>
             <span class="project-tag">UI</span>
             <span class="project-tag">VFX</span>
           </div>
-          <a href="https://andreagranados.itch.io/baiquimu" target="_blank" class="btn-play btn-itch">Play on itch.io</a>
+          <a href="https://andreagranados.itch.io/baiquimu" target="_blank" class="btn-play btn-itch" data-i18n="play-itch">Play on itch.io</a>
         </div>
       </div>
 
@@ -860,69 +1222,127 @@
           <img src="https://img.itch.zone/aW1nLzI2MzU0ODkyLnBuZw==/315x250%23c/R8Msch.png" alt="Mi Querido Engendro" />
         </div>
         <div class="project-card-info">
-          <h3>Mi Querido Engendro</h3>
-          <p>As the Lead Programmer, I was responsible for designing and implementing core systems, as well as creating supporting VFX to enhance the overall user experience. This was a highly challenging and rewarding project that strengthened my leadership and technical skills in game development.</p>
+          <h3 data-i18n="engendro-title">My Little Abomination</h3>
+          <p data-i18n="engendro-desc">As the Lead Programmer, I was responsible for designing and implementing core systems, as well as creating supporting VFX to enhance the overall user experience. This was a highly challenging and rewarding project that strengthened my leadership and technical skills in game development.</p>
           <div class="project-tags">
             <span class="project-tag">C#</span>
             <span class="project-tag">Lead Programming</span>
             <span class="project-tag">VFX</span>
             <span class="project-tag">GitHub</span>
           </div>
-          <a href="https://juan-becerra.itch.io/my-little-abomination" target="_blank" class="btn-play btn-itch">Play on itch.io</a>
+          <a href="https://juan-becerra.itch.io/my-little-abomination" target="_blank" class="btn-play btn-itch" data-i18n="play-itch">Play on itch.io</a>
         </div>
       </div>
 
     </div>
 
     <!-- VFX Section -->
-    <h2 class="section-title" id="vfx">Real-Time VFX</h2>
+    <h2 class="section-title" id="vfx" data-i18n="section-vfx">Real-Time VFX</h2>
 
-    <div class="grid-vfx">
-      <div class="vfx-item">
-        <img src="Starts.gif" alt="Stars VFX" />
+    <div class="vfx-carousel" id="vfxCarousel">
+      <button class="vfx-arrow vfx-arrow-left"  id="vfxPrev" aria-label="Anterior">&#8592;</button>
+
+      <div class="vfx-stage" id="vfxStage">
+        <div class="vfx-card">
+          <img src="Starts.gif" alt="Stars VFX" />
+          <div class="vfx-card-label">Stars VFX</div>
+        </div>
+        <div class="vfx-card">
+          <img src="LuzExplote.gif" alt="Light Explosion VFX" />
+          <div class="vfx-card-label">Light Explosion</div>
+        </div>
+        <div class="vfx-card">
+          <img src="FireExplote.gif" alt="Fire Explosion VFX" />
+          <div class="vfx-card-label">Fire Explosion</div>
+        </div>
+        <div class="vfx-card">
+          <img src="HaloFuente.gif" alt="Halo Fountain VFX" />
+          <div class="vfx-card-label">Halo Fountain</div>
+        </div>
+        <div class="vfx-card">
+          <img src="FireBall and Light.gif" alt="Fireball & Light VFX" />
+          <div class="vfx-card-label">Fireball &amp; Light</div>
+        </div>
+        <div class="vfx-card">
+          <img src="Exorcizar.gif" alt="Exorcism VFX" />
+          <div class="vfx-card-label">Exorcism VFX</div>
+        </div>
       </div>
-      <div class="vfx-item">
-        <img src="LuzExplote.gif" alt="Luz Explote VFX" />
-      </div>
-      <div class="vfx-item">
-        <img src="FireExplote.gif" alt="Fire Explote VFX" />
-      </div>
-      <div class="vfx-item">
-        <img src="HaloFuente.gif" alt="Halo Fuente VFX" />
-      </div>
-      <div class="vfx-item">
-        <img src="FireBall and Light.gif" alt="Fireball and Light VFX" />
-      </div>
-      <div class="vfx-item">
-        <img src="Exorcizar.gif" alt="Exorcizar VFX" />
-      </div>
+
+      <button class="vfx-arrow vfx-arrow-right" id="vfxNext" aria-label="Siguiente">&#8594;</button>
+      <div class="vfx-dots" id="vfxDots"></div>
     </div>
 
     <!-- Skills Section -->
     <h2 class="section-title" id="skills">Skills</h2>
-    <div class="skills-grid">
-      <div class="skills-column">
-        <h3>Game Development & Programming</h3>
-        <span class="skill-tag">C#</span>
-        <span class="skill-tag">Gameplay Programming</span>
-        <span class="skill-tag">Physics</span>
-        <span class="skill-tag">VFX</span>
-        <span class="skill-tag">Shaders</span>
-        <span class="skill-tag">UI/UX Design</span>
-        <span class="skill-tag">Narrative Design</span>
+    <p class="skills-subtitle" data-i18n="skills-subtitle">Unity development and visual design: two disciplines I work together to build coherent interactive experiences.</p>
+
+    <div class="skills-orbits-row">
+
+      <!-- Orbit 1: Game Development -->
+      <div class="skills-orbit-wrap" id="orbitGameDev">
+        <div class="orbit-ring-track"></div>
+        <div class="orbit-center">
+          <span class="orbit-center-label">Game<br>Dev</span>
+        </div>
+        <div class="orbit-card" style="--accent:#ff4da6">
+          <span class="orbit-abbr">C#</span>
+          <span class="orbit-label">C Sharp</span>
+        </div>
+        <div class="orbit-card" style="--accent:#a855f7">
+          <span class="orbit-abbr">GAME</span>
+          <span class="orbit-label">Gameplay<br>Programming</span>
+        </div>
+        <div class="orbit-card" style="--accent:#22d3ee">
+          <span class="orbit-abbr">PHY</span>
+          <span class="orbit-label">Physics</span>
+        </div>
+        <div class="orbit-card" style="--accent:#4ade80">
+          <span class="orbit-abbr">VFX</span>
+          <span class="orbit-label">VFX Shaders</span>
+        </div>
+        <div class="orbit-card" style="--accent:#f97316">
+          <span class="orbit-abbr">UI</span>
+          <span class="orbit-label">UI / UX Design</span>
+        </div>
+        <div class="orbit-card" style="--accent:#fbbf24">
+          <span class="orbit-abbr">NARR</span>
+          <span class="orbit-label">Narrative<br>Design</span>
+        </div>
       </div>
-      <div class="skills-column">
-        <h3>Tools</h3>
-        <span class="skill-tag">Blender</span>
-        <span class="skill-tag">Rhinoceros</span>
-        <span class="skill-tag">Photoshop</span>
-        <span class="skill-tag">Illustrator</span>
-        <span class="skill-tag">Affinity</span>
+
+      <!-- Orbit 2: Tools -->
+      <div class="skills-orbit-wrap" id="orbitTools">
+        <div class="orbit-ring-track"></div>
+        <div class="orbit-center">
+          <span class="orbit-center-label">Tools</span>
+        </div>
+        <div class="orbit-card" style="--accent:#fb923c">
+          <span class="orbit-abbr">BLD</span>
+          <span class="orbit-label">Blender</span>
+        </div>
+        <div class="orbit-card" style="--accent:#94a3b8">
+          <span class="orbit-abbr">RHN</span>
+          <span class="orbit-label">Rhinoceros</span>
+        </div>
+        <div class="orbit-card" style="--accent:#3b82f6">
+          <span class="orbit-abbr">PS</span>
+          <span class="orbit-label">Photoshop</span>
+        </div>
+        <div class="orbit-card" style="--accent:#facc15">
+          <span class="orbit-abbr">AI</span>
+          <span class="orbit-label">Illustrator</span>
+        </div>
+        <div class="orbit-card" style="--accent:#ec4899">
+          <span class="orbit-abbr">AFF</span>
+          <span class="orbit-label">Affinity</span>
+        </div>
       </div>
+
     </div>
 
     <!-- Unity Learn Section -->
-    <h2 class="section-title" id="unitylearn">Unity Learn</h2>
+    <h2 class="section-title" id="unitylearn" data-i18n="section-unitylearn">Unity Learn</h2>
 
     <div class="grid grid-skills">
       <!-- Snack Smash -->
@@ -930,8 +1350,8 @@
         <img src="SnackSmash.png" alt="Snack Smash" />
         <div class="card-body">
           <h3>Snack Smash</h3>
-          <p>A fast-paced food smashing game where reflexes are everything.</p>
-          <a href="https://renebarrera.itch.io/snack-smash" target="_blank" class="btn-play">Play Game</a>
+          <p data-i18n="snack-desc">A fast-paced food smashing game where reflexes are everything.</p>
+          <a href="https://renebarrera.itch.io/snack-smash" target="_blank" class="btn-play" data-i18n="play-game">Play Game</a>
         </div>
       </div>
 
@@ -940,8 +1360,8 @@
         <img src="Food Rush.png" alt="Food Rush Clicker" />
         <div class="card-body">
           <h3>Food Rush Clicker</h3>
-          <p>Click and grow your food empire in this fast incremental game.</p>
-          <a href="https://renebarrera.itch.io/food-rush-clicker" target="_blank" class="btn-play">Play Game</a>
+          <p data-i18n="foodrush-desc">Click and grow your food empire in this fast incremental game.</p>
+          <a href="https://renebarrera.itch.io/food-rush-clicker" target="_blank" class="btn-play" data-i18n="play-game">Play Game</a>
         </div>
       </div>
 
@@ -950,15 +1370,15 @@
         <img src="BeABall.png" alt="Be a Ball" />
         <div class="card-body">
           <h3>Be a Ball</h3>
-          <p>Control a soccer ball and overcome obstacles in this fun challenge.</p>
-          <a href="https://renebarrera.itch.io/se-un-balon" target="_blank" class="btn-play">Play Game</a>
+          <p data-i18n="beaball-desc">Control a soccer ball and overcome obstacles in this fun challenge.</p>
+          <a href="https://renebarrera.itch.io/se-un-balon" target="_blank" class="btn-play" data-i18n="play-game">Play Game</a>
         </div>
       </div>
     </div>
 
     <!-- Contact -->
-    <h2 class="contact-title" id="contact">Contact</h2>
-    <p class="contact-sub">If you want to collaborate or learn more about my work, feel free to connect with me.</p>
+    <h2 class="contact-title" id="contact" data-i18n="nav-contact">Contact</h2>
+    <p class="contact-sub" data-i18n="contact-sub">If you want to collaborate or learn more about my work, feel free to connect with me.</p>
 
     <div class="social-links">
       <a href="https://www.linkedin.com/in/rene-barrera-lizarazo-28b57435a/" target="_blank" class="btn-linkedin">LinkedIn</a>
@@ -969,17 +1389,27 @@
 
   </div>
 
+  <!-- Botón flotante de idioma -->
+  <button class="lang-float" id="langToggleFloat" aria-label="Cambiar idioma">
+    <span class="lang-opt active" data-l="en">EN</span>
+    <span class="lang-sep">|</span>
+    <span class="lang-opt" data-l="es">ES</span>
+  </button>
+
   <script>
 
     // ── TYPEWRITER ──
     (function () {
       const el = document.getElementById('typewriter-text');
-      const phrases = ['Game Developer', 'VFX Artist', 'Unity / C# Dev'];
+      window.__twPhrases = ['Game Developer', 'VFX Artist', 'Unity / C# Dev'];
       let phraseIndex = 0;
       let charIndex = 0;
       let deleting = false;
 
       function tick() {
+        const phrases = window.__twPhrases;
+        // Resetear índice si cambió el idioma y el índice quedó fuera de rango
+        if (phraseIndex >= phrases.length) phraseIndex = 0;
         const phrase = phrases[phraseIndex];
         el.textContent = deleting
           ? phrase.slice(0, charIndex - 1)
@@ -1002,6 +1432,224 @@
       }
 
       setTimeout(tick, 1400);
+    })();
+
+    // ── LANGUAGE SYSTEM ──
+    (function () {
+      const dict = {
+        en: {
+          'nav-projects':    'Projects',
+          'nav-contact':     'Contact',
+          'hero-about':      'About me',
+          'hero-bio-1':      "Game developer specialized in Unity and C#, focused on building dynamic and well-structured interactive experiences. I'm passionate about combining solid programming with strong visual design to create games that feel smooth, responsive, and engaging.",
+          'hero-bio-2':      'I have experience working with real-time VFX and Shader Graph in Unity, exploring how visual systems and gameplay logic can work together to enhance player immersion. I enjoy tackling technical challenges that require optimizing mechanics, improving performance, and refining every detail to deliver polished and functional experiences.',
+          'projects-quote':  'Every game I built taught me something new — every bug, every mechanic, every effect that <em>finally clicked</em>.',
+          'droppy-desc':     'In this project, I contributed to environment design, UI implementation, and gameplay programming, along with creating real-time VFX to enhance the player experience. It was a challenging and enriching process that helped me strengthen both my technical and creative skills in Unity.',
+          'baiquimu-desc':   'I worked as a C# programmer, developing core gameplay mechanics and contributing to UI systems and ability-based VFX. This project was a challenging experience that pushed me to improve my problem-solving skills and refine my approach to gameplay implementation.',
+          'engendro-desc':   'As the Lead Programmer, I was responsible for designing and implementing core systems, as well as creating supporting VFX to enhance the overall user experience. This was a highly challenging and rewarding project that strengthened my leadership and technical skills in game development.',
+          'engendro-title':  'My Little Abomination',
+          'play-itch':       'Play on itch.io',
+          'section-vfx':     'Real-Time VFX',
+          'skills-subtitle': 'Unity development and visual design: two disciplines I work together to build coherent interactive experiences.',
+          'section-unitylearn': 'Unity Learn',
+          'snack-desc':      'A fast-paced food smashing game where reflexes are everything.',
+          'foodrush-desc':   'Click and grow your food empire in this fast incremental game.',
+          'beaball-desc':    'Control a soccer ball and overcome obstacles in this fun challenge.',
+          'play-game':       'Play Game',
+          'contact-sub':     'If you want to collaborate or learn more about my work, feel free to connect with me.',
+        },
+        es: {
+          'nav-projects':    'Proyectos',
+          'nav-contact':     'Contacto',
+          'hero-about':      'Sobre mí',
+          'hero-bio-1':      'Desarrollador de videojuegos especializado en Unity y C#, enfocado en construir experiencias interactivas dinámicas y bien estructuradas. Me apasiona combinar una programación sólida con un diseño visual fuerte para crear juegos que se sientan fluidos, responsivos y envolventes.',
+          'hero-bio-2':      'Tengo experiencia trabajando con VFX en tiempo real y Shader Graph en Unity, explorando cómo los sistemas visuales y la lógica de gameplay pueden trabajar juntos para mejorar la inmersión del jugador. Disfruto abordar desafíos técnicos que requieren optimizar mecánicas, mejorar el rendimiento y afinar cada detalle para entregar experiencias pulidas y funcionales.',
+          'projects-quote':  'Cada juego que construí me enseñó algo nuevo — cada bug, cada mecánica, cada efecto que <em>por fin funcionó</em>.',
+          'droppy-desc':     'En este proyecto contribuí al diseño de entornos, implementación de UI y programación de gameplay, además de crear VFX en tiempo real para mejorar la experiencia del jugador. Fue un proceso desafiante y enriquecedor que me ayudó a fortalecer mis habilidades técnicas y creativas en Unity.',
+          'baiquimu-desc':   'Trabajé como programador de C#, desarrollando mecánicas de gameplay principales y contribuyendo a sistemas de UI y VFX basados en habilidades. Este proyecto fue una experiencia desafiante que me impulsó a mejorar mis habilidades de resolución de problemas y refinar mi enfoque en la implementación de gameplay.',
+          'engendro-desc':   'Como Programador Principal, fui responsable de diseñar e implementar los sistemas centrales, además de crear VFX de apoyo para mejorar la experiencia del usuario. Fue un proyecto muy desafiante y gratificante que fortaleció mis habilidades de liderazgo y técnicas en el desarrollo de videojuegos.',
+          'engendro-title':  'Mi Pequeño Engendro',
+          'play-itch':       'Jugar en itch.io',
+          'section-vfx':     'VFX en Tiempo Real',
+          'skills-subtitle': 'Desarrollo en Unity y diseño visual: dos disciplinas que trabajo juntas para construir experiencias interactivas coherentes.',
+          'section-unitylearn': 'Unity Learn',
+          'snack-desc':      'Un juego de golpear comida a toda velocidad donde los reflejos lo son todo.',
+          'foodrush-desc':   'Haz clic y expande tu imperio de comida en este rápido juego incremental.',
+          'beaball-desc':    'Controla un balón de fútbol y supera obstáculos en este divertido desafío.',
+          'play-game':       'Jugar',
+          'contact-sub':     'Si quieres colaborar o saber más sobre mi trabajo, no dudes en conectarte conmigo.',
+        }
+      };
+
+      const typewriterPhrases = {
+        en: ['Game Developer', 'VFX Artist', 'Unity / C# Dev'],
+        es: ['Desarrollador de Juegos', 'Artista VFX', 'Unity / C# Dev']
+      };
+
+      let currentLang = 'en';
+
+      function setLang(lang) {
+        currentLang = lang;
+        const t = dict[lang];
+
+        // Actualizar todos los elementos con data-i18n
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+
+        // Actualizar indicadores de idioma en ambos botones
+        document.querySelectorAll('.lang-opt').forEach(span => {
+          span.classList.toggle('active', span.dataset.l === lang);
+        });
+
+        // Actualizar typewriter phrases (se aplicará en el próximo ciclo)
+        window.__twPhrases = typewriterPhrases[lang];
+      }
+
+      // Click en cualquiera de los dos botones
+      function handleClick(e) {
+        const opt = e.target.closest('.lang-opt');
+        if (opt && opt.dataset.l !== currentLang) setLang(opt.dataset.l);
+        // Click en el botón completo (fuera de los spans) → toggle
+        if (!opt) setLang(currentLang === 'en' ? 'es' : 'en');
+      }
+
+      document.getElementById('langToggleNav').addEventListener('click', handleClick);
+      document.getElementById('langToggleFloat').addEventListener('click', handleClick);
+    })();
+
+    // ── SKILLS ORBIT ──
+    function initOrbit(id, speed) {
+      const wrap = document.getElementById(id);
+      if (!wrap) return;
+
+      const cards  = Array.from(wrap.querySelectorAll('.orbit-card'));
+      const N      = cards.length;
+      const R      = 165;   // radio en px (wrap 440 → centro 220)
+      const WRAP_C = 220;
+      const CARD_W = 110;
+      const CARD_H = 78;
+
+      let angleDeg = -90;   // arranca desde arriba
+      let paused   = false;
+      let lastTs   = null;
+
+      function tick(ts) {
+        if (lastTs !== null && !paused) {
+          angleDeg += speed * (ts - lastTs);
+        }
+        lastTs = ts;
+
+        cards.forEach((card, i) => {
+          const rad = (angleDeg + i * (360 / N)) * Math.PI / 180;
+          card.style.left = (WRAP_C + Math.cos(rad) * R - CARD_W / 2) + 'px';
+          card.style.top  = (WRAP_C + Math.sin(rad) * R - CARD_H / 2) + 'px';
+        });
+
+        requestAnimationFrame(tick);
+      }
+
+      // Pausa al entrar — reanuda inmediatamente al salir
+      wrap.addEventListener('mouseenter', () => { paused = true;  });
+      wrap.addEventListener('mouseleave', () => { paused = false; });
+
+      requestAnimationFrame(tick);
+    }
+
+    initOrbit('orbitGameDev',  0.016);   // ~22s por vuelta, horario
+    initOrbit('orbitTools',   -0.020);   // ~18s por vuelta, antihorario
+
+    // ── VFX 3D CAROUSEL ──
+    (function () {
+      const cards   = Array.from(document.querySelectorAll('.vfx-card'));
+      const dotsWrap = document.getElementById('vfxDots');
+      const N = cards.length;
+      let active = 2; // arranca en el del medio (índice 2 de 6)
+
+      // Configuración por posición relativa al activo
+      //  offset:  0 = centro, ±1 = adyacente, ±2 = segundo, ±3+ = oculto
+      const cfg = [
+        { tx:   0, tz:   0, ry:   0, scale: 1,    opacity: 1,    z: 10 },
+        { tx: 290, tz: -80, ry: -42, scale: 0.80, opacity: 0.88, z: 8  },
+        { tx: 510, tz:-170, ry: -58, scale: 0.63, opacity: 0.65, z: 6  },
+      ];
+
+      // Crear dots
+      cards.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'vfx-dot';
+        dot.addEventListener('click', () => goManual(i));
+        dotsWrap.appendChild(dot);
+      });
+
+      function update() {
+        const dots = dotsWrap.querySelectorAll('.vfx-dot');
+        cards.forEach((card, i) => {
+          // Camino más corto en el círculo → efecto infinito
+          let offset = i - active;
+          if (offset >  N / 2) offset -= N;
+          if (offset < -N / 2) offset += N;
+          const abs  = Math.abs(offset);
+          const sign = offset >= 0 ? 1 : -1;
+
+          card.classList.toggle('is-active', offset === 0);
+
+          if (abs >= cfg.length) {
+            // Ocultar tarjetas muy alejadas
+            card.style.opacity = '0';
+            card.style.pointerEvents = 'none';
+            card.style.zIndex = '0';
+            return;
+          }
+
+          const c = cfg[abs];
+          card.style.opacity       = c.opacity;
+          card.style.zIndex        = c.z;
+          card.style.pointerEvents = 'auto';
+          card.style.transform     =
+            `translate(-50%, -50%) translateX(${sign * c.tx}px) translateZ(${c.tz}px) rotateY(${sign * c.ry}deg) scale(${c.scale})`;
+        });
+
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === active));
+      }
+
+      // Autoplay cada 5 segundos
+      let autoTimer = setInterval(() => go(active + 1), 5000);
+
+      function go(index) {
+        active = ((index % N) + N) % N;
+        update();
+      }
+
+      function goManual(index) {
+        clearInterval(autoTimer);
+        go(index);
+        autoTimer = setInterval(() => go(active + 1), 5000);
+      }
+
+      document.getElementById('vfxPrev').addEventListener('click', () => goManual(active - 1));
+      document.getElementById('vfxNext').addEventListener('click', () => goManual(active + 1));
+
+      // Click en tarjeta lateral para centrarla
+      cards.forEach((card, i) => {
+        card.addEventListener('click', () => {
+          if (i !== active) goManual(i);
+        });
+      });
+
+      // Swipe táctil
+      let touchX = null;
+      const stage = document.getElementById('vfxStage');
+      stage.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener('touchend',   e => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 40) goManual(active + (dx < 0 ? 1 : -1));
+        touchX = null;
+      });
+
+      update();
     })();
   </script>
 </body>
