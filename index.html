@@ -1291,6 +1291,175 @@
         margin-bottom: -120px;
       }
     }
+
+    /* ── FOLDER CABINET ── */
+    .folder-cabinet {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      margin-bottom: 60px;
+      text-align: left;
+    }
+
+    .fstack-wrap { flex: 0 0 250px; }
+
+    .fstack-3d { display: flex; flex-direction: column; }
+
+    .fstack-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 0 18px;
+      height: 66px;
+      background: var(--fc);
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: left;
+      border-radius: 14px 14px 0 0;
+      margin-bottom: -2px;
+      position: relative;
+      z-index: calc(4 - var(--depth));
+      filter: brightness(calc(1.05 - var(--depth) * 0.14));
+      transform: scaleX(calc(1 - var(--depth) * 0.03)) translateX(0px);
+      transform-origin: left center;
+      transition: filter 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.3);
+    }
+
+    .fstack-item.fstack-active {
+      filter: brightness(1.2);
+      transform: scaleX(1) translateX(10px);
+      z-index: 10;
+      box-shadow: 6px -6px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+    }
+
+    .fstack-item:hover:not(.fstack-active) {
+      filter: brightness(calc(1.1 - var(--depth) * 0.08));
+      transform: scaleX(calc(1 - var(--depth) * 0.03)) translateX(5px);
+    }
+
+    .fstack-icon { width: 20px; height: 20px; flex-shrink: 0; opacity: 0.9; }
+
+    .fstack-item span:last-child {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .fstack-item.fstack-active::after {
+      content: '▶';
+      font-size: 10px;
+      opacity: 0.75;
+      margin-left: auto;
+    }
+
+    /* Open folder area */
+    .fopen-area { flex: 1; position: relative; min-height: 380px; }
+
+    .fopen-panel {
+      display: none;
+      flex-direction: row;
+      border-radius: 4px 20px 20px 20px;
+      overflow: hidden;
+      /* Liquid glass fusionado con el color de la pestaña */
+      background: linear-gradient(
+        145deg,
+        rgba(var(--fc-rgb), 0.18) 0%,
+        rgba(255, 255, 255, 0.07) 45%,
+        rgba(8, 4, 18, 0.72) 100%
+      );
+      backdrop-filter: blur(24px) saturate(190%) brightness(1.06);
+      -webkit-backdrop-filter: blur(24px) saturate(190%) brightness(1.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-top: 2px solid var(--fc);
+      border-left: 1px solid rgba(var(--fc-rgb), 0.28);
+      box-shadow:
+        0 16px 50px rgba(0, 0, 0, 0.5),
+        0 0 55px rgba(var(--fc-rgb), 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.20),
+        inset 0 0 40px rgba(var(--fc-rgb), 0.07);
+      animation: folderSlideIn 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      position: relative;
+    }
+
+    .fopen-panel.active { display: flex; }
+
+    @keyframes folderSlideIn {
+      from { opacity: 0; transform: translateX(-8px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .fopen-img-wrap { flex: 0 0 42%; overflow: hidden; }
+
+    .fopen-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.82);
+      transition: filter 0.4s ease, transform 0.4s ease;
+    }
+
+    .fopen-panel:hover .fopen-img { filter: brightness(1); transform: scale(1.03); }
+
+    .fopen-info {
+      flex: 1;
+      padding: 26px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .fopen-info h3 { color: white; font-size: 22px; font-weight: 700; margin: 0; }
+    .fopen-info p  { font-size: 14px; opacity: 0.75; margin: 0; line-height: 1.6; }
+    .fopen-info .project-tags { justify-content: flex-start; margin: 0; }
+
+    /* Barra de progreso con el color de la pestaña */
+    .fopen-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--fc);
+      border-radius: 0 0 0 3px;
+      opacity: 0.9;
+      box-shadow: 0 0 8px rgba(var(--fc-rgb), 0.6);
+    }
+
+    /* Mobile */
+    @media (max-width: 720px) {
+      .folder-cabinet { flex-direction: column; }
+      .fstack-wrap { flex: none; width: 100%; }
+      .fstack-3d { flex-direction: row; overflow-x: auto; gap: 6px; padding-bottom: 4px; }
+      .fstack-item {
+        flex: 0 0 auto;
+        width: auto;
+        height: 44px;
+        padding: 0 14px;
+        border-radius: 10px;
+        margin-bottom: 0;
+        font-size: 12px;
+        transform: none !important;
+        filter: brightness(calc(1 - var(--depth) * 0.08)) !important;
+      }
+      .fstack-item.fstack-active {
+        transform: none !important;
+        filter: brightness(1.15) !important;
+        outline: 2px solid rgba(255,255,255,0.45);
+      }
+      .fstack-item.fstack-active::after { display: none; }
+      .fopen-panel { flex-direction: column; border-radius: 12px; }
+      .fopen-img-wrap { flex: none; height: 190px; }
+      .fopen-info { padding: 20px 22px 24px; }
+    }
   </style>
 </head>
 <body>
@@ -1350,61 +1519,109 @@
       Every game I built taught me something new — every bug, every mechanic, every effect that <em>finally clicked</em>.
     </p>
 
-    <div class="grid projects-grid">
-      <!-- Droppy -->
-      <div class="card project-card" id="droppy-card">
-        <div class="project-card-image">
-          <img src="https://img.itch.zone/aW1nLzI2MDYxOTc0LnBuZw==/original/QNeDFe.png" alt="Droppy: In Search of the Sea" />
-        </div>
-        <div class="project-card-info">
-          <h3>Droppy: In Search of the Sea</h3>
-          <p data-i18n="droppy-desc">In this project, I contributed to environment design, UI implementation, and gameplay programming, along with creating real-time VFX to enhance the player experience. It was a challenging and enriching process that helped me strengthen both my technical and creative skills in Unity.</p>
-          <div class="project-tags">
-            <span class="project-tag">C#</span>
-            <span class="project-tag">Real-Time VFX</span>
-            <span class="project-tag">Environment</span>
-            <span class="project-tag">UI</span>
-          </div>
-          <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play btn-itch" data-i18n="play-itch">Play on itch.io</a>
+    <div class="folder-cabinet" id="folderCabinet">
+
+      <!-- Folder stack (left) -->
+      <div class="fstack-wrap">
+        <div class="fstack-3d" id="folderStack">
+          <button class="fstack-item" data-proj="0" style="--fc:#7b2fff; --depth:0">
+            <svg class="fstack-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+            <span>Star Brew</span>
+          </button>
+          <button class="fstack-item" data-proj="1" style="--fc:#ff7c43; --depth:1">
+            <svg class="fstack-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+            <span>Baiquimu</span>
+          </button>
+          <button class="fstack-item" data-proj="2" style="--fc:#06d6a0; --depth:2">
+            <svg class="fstack-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+            <span data-i18n="engendro-title">My Little Abomination</span>
+          </button>
+          <button class="fstack-item" data-proj="3" style="--fc:#e63946; --depth:3">
+            <svg class="fstack-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+            <span>Droppy</span>
+          </button>
         </div>
       </div>
 
-      <!-- Baiquimu -->
-      <div class="card project-card project-card--reverse" id="brujita-card">
-        <div class="project-card-image">
-          <img src="https://img.itch.zone/aW1nLzI2NDAxMzExLnBuZw==/315x250%23c/P2hs8N.png" alt="Baiquimu" />
-        </div>
-        <div class="project-card-info">
-          <h3>Baiquimu</h3>
-          <p data-i18n="baiquimu-desc">I worked as a C# programmer, developing core gameplay mechanics and contributing to UI systems and ability-based VFX. This project was a challenging experience that pushed me to improve my problem-solving skills and refine my approach to gameplay implementation.</p>
-          <div class="project-tags">
-            <span class="project-tag">C#</span>
-            <span class="project-tag">Programming</span>
-            <span class="project-tag">UI</span>
-            <span class="project-tag">VFX</span>
-          </div>
-          <a href="https://andreagranados.itch.io/baiquimu" target="_blank" class="btn-play btn-itch" data-i18n="play-itch">Play on itch.io</a>
-        </div>
-      </div>
+      <!-- Open folder content (right) -->
+      <div class="fopen-area" id="fopenArea">
 
-      <!-- Mi Querido Engendro -->
-      <div class="card project-card" id="engendro-card">
-        <div class="project-card-image">
-          <img src="https://img.itch.zone/aW1nLzI2MzU0ODkyLnBuZw==/315x250%23c/R8Msch.png" alt="Mi Querido Engendro" />
-        </div>
-        <div class="project-card-info">
-          <h3 data-i18n="engendro-title">My Little Abomination</h3>
-          <p data-i18n="engendro-desc">As the Lead Programmer, I was responsible for designing and implementing core systems, as well as creating supporting VFX to enhance the overall user experience. This was a highly challenging and rewarding project that strengthened my leadership and technical skills in game development.</p>
-          <div class="project-tags">
-            <span class="project-tag">C#</span>
-            <span class="project-tag">Lead Programming</span>
-            <span class="project-tag">VFX</span>
-            <span class="project-tag">GitHub</span>
+        <!-- Star Brew: #7b2fff → 123,47,255 -->
+        <div class="fopen-panel" data-proj="0" style="--fc:#7b2fff; --fc-rgb:123,47,255">
+          <div class="fopen-img-wrap">
+            <img class="fopen-img" src="https://img.itch.zone/aW1nLzI2OTQ5NjMwLnBuZw==/315x250%23c/eDNzmE.png" alt="Star Brew" />
           </div>
-          <a href="https://juan-becerra.itch.io/my-little-abomination" target="_blank" class="btn-play btn-itch" data-i18n="play-itch">Play on itch.io</a>
+          <div class="fopen-info">
+            <h3>Star Brew</h3>
+            <p data-i18n="starbrew-desc">A collaborative game project in which I contributed to gameplay programming and core systems development, applying my Unity and C# skills to bring the game's mechanics to life.</p>
+            <div class="project-tags">
+              <span class="project-tag">C#</span>
+              <span class="project-tag">Unity</span>
+              <span class="project-tag">Programming</span>
+            </div>
+            <a href="https://sajun0019.itch.io/star-brew" target="_blank" class="btn-play btn-itch" data-i18n="play-itch">Play on itch.io</a>
+          </div>
+          <div class="fopen-bar"></div>
         </div>
-      </div>
 
+        <!-- Baiquimu: #ff7c43 → 255,124,67 -->
+        <div class="fopen-panel" data-proj="1" style="--fc:#ff7c43; --fc-rgb:255,124,67">
+          <div class="fopen-img-wrap">
+            <img class="fopen-img" src="https://img.itch.zone/aW1nLzI2NjM4MjcwLnBuZw==/315x250%23c/v4Xzqk.png" alt="Baiquimu" />
+          </div>
+          <div class="fopen-info">
+            <h3>Baiquimu</h3>
+            <p data-i18n="baiquimu-desc">I worked as a C# programmer, developing core gameplay mechanics and contributing to UI systems and ability-based VFX. This project was a challenging experience that pushed me to improve my problem-solving skills and refine my approach to gameplay implementation.</p>
+            <div class="project-tags">
+              <span class="project-tag">C#</span>
+              <span class="project-tag">Programming</span>
+              <span class="project-tag">UI</span>
+              <span class="project-tag">VFX</span>
+            </div>
+            <a href="https://andreagranados.itch.io/baiquimu" target="_blank" class="btn-play btn-itch" data-i18n="play-itch">Play on itch.io</a>
+          </div>
+          <div class="fopen-bar"></div>
+        </div>
+
+        <!-- Mi Querido Engendro: #06d6a0 → 6,214,160 -->
+        <div class="fopen-panel" data-proj="2" style="--fc:#06d6a0; --fc-rgb:6,214,160">
+          <div class="fopen-img-wrap">
+            <img class="fopen-img" src="https://img.itch.zone/aW1nLzI2MzU0ODkyLnBuZw==/315x250%23c/R8Msch.png" alt="Mi Querido Engendro" />
+          </div>
+          <div class="fopen-info">
+            <h3 data-i18n="engendro-title">My Little Abomination</h3>
+            <p data-i18n="engendro-desc">As the Lead Programmer, I was responsible for designing and implementing core systems, as well as creating supporting VFX to enhance the overall user experience. This was a highly challenging and rewarding project that strengthened my leadership and technical skills in game development.</p>
+            <div class="project-tags">
+              <span class="project-tag">C#</span>
+              <span class="project-tag">Lead Programming</span>
+              <span class="project-tag">VFX</span>
+              <span class="project-tag">GitHub</span>
+            </div>
+            <a href="https://juan-becerra.itch.io/my-little-abomination" target="_blank" class="btn-play btn-itch" data-i18n="play-itch">Play on itch.io</a>
+          </div>
+          <div class="fopen-bar"></div>
+        </div>
+
+        <!-- Droppy: #e63946 → 230,57,70 -->
+        <div class="fopen-panel" data-proj="3" style="--fc:#e63946; --fc-rgb:230,57,70">
+          <div class="fopen-img-wrap">
+            <img class="fopen-img" src="https://img.itch.zone/aW1nLzI2MDYxOTc0LnBuZw==/original/QNeDFe.png" alt="Droppy: In Search of the Sea" />
+          </div>
+          <div class="fopen-info">
+            <h3>Droppy: In Search of the Sea</h3>
+            <p data-i18n="droppy-desc">In this project, I contributed to environment design, UI implementation, and gameplay programming, along with creating real-time VFX to enhance the player experience. It was a challenging and enriching process that helped me strengthen both my technical and creative skills in Unity.</p>
+            <div class="project-tags">
+              <span class="project-tag">C#</span>
+              <span class="project-tag">Real-Time VFX</span>
+              <span class="project-tag">Environment</span>
+              <span class="project-tag">UI</span>
+            </div>
+            <a href="https://renebarrera.itch.io/droppy-en-busca-del-mar" target="_blank" class="btn-play btn-itch" data-i18n="play-itch">Play on itch.io</a>
+          </div>
+          <div class="fopen-bar"></div>
+        </div>
+
+      </div>
     </div>
 
     <!-- VFX Section -->
@@ -1642,6 +1859,7 @@
           'hero-bio-1':      "Game developer specialized in Unity and C#, focused on building dynamic and well-structured interactive experiences. I'm passionate about combining solid programming with strong visual design to create games that feel smooth, responsive, and engaging.",
           'hero-bio-2':      'I have experience working with real-time VFX and Shader Graph in Unity, exploring how visual systems and gameplay logic can work together to enhance player immersion. I enjoy tackling technical challenges that require optimizing mechanics, improving performance, and refining every detail to deliver polished and functional experiences.',
           'projects-quote':  'Every game I built taught me something new — every bug, every mechanic, every effect that <em>finally clicked</em>.',
+          'starbrew-desc':   'A collaborative game project in which I contributed to gameplay programming and core systems development, applying my Unity and C# skills to bring the game\'s mechanics to life.',
           'droppy-desc':     'In this project, I contributed to environment design, UI implementation, and gameplay programming, along with creating real-time VFX to enhance the player experience. It was a challenging and enriching process that helped me strengthen both my technical and creative skills in Unity.',
           'baiquimu-desc':   'I worked as a C# programmer, developing core gameplay mechanics and contributing to UI systems and ability-based VFX. This project was a challenging experience that pushed me to improve my problem-solving skills and refine my approach to gameplay implementation.',
           'engendro-desc':   'As the Lead Programmer, I was responsible for designing and implementing core systems, as well as creating supporting VFX to enhance the overall user experience. This was a highly challenging and rewarding project that strengthened my leadership and technical skills in game development.',
@@ -1663,6 +1881,7 @@
           'hero-bio-1':      'Desarrollador de videojuegos especializado en Unity y C#, enfocado en construir experiencias interactivas dinámicas y bien estructuradas. Me apasiona combinar una programación sólida con un diseño visual fuerte para crear juegos que se sientan fluidos, responsivos y envolventes.',
           'hero-bio-2':      'Tengo experiencia trabajando con VFX en tiempo real y Shader Graph en Unity, explorando cómo los sistemas visuales y la lógica de gameplay pueden trabajar juntos para mejorar la inmersión del jugador. Disfruto abordar desafíos técnicos que requieren optimizar mecánicas, mejorar el rendimiento y afinar cada detalle para entregar experiencias pulidas y funcionales.',
           'projects-quote':  'Cada juego que construí me enseñó algo nuevo — cada bug, cada mecánica, cada efecto que <em>por fin funcionó</em>.',
+          'starbrew-desc':   'Un proyecto de juego colaborativo en el que contribuí a la programación de gameplay y el desarrollo de sistemas centrales, aplicando mis habilidades en Unity y C# para dar vida a las mecánicas del juego.',
           'droppy-desc':     'En este proyecto contribuí al diseño de entornos, implementación de UI y programación de gameplay, además de crear VFX en tiempo real para mejorar la experiencia del jugador. Fue un proceso desafiante y enriquecedor que me ayudó a fortalecer mis habilidades técnicas y creativas en Unity.',
           'baiquimu-desc':   'Trabajé como programador de C#, desarrollando mecánicas de gameplay principales y contribuyendo a sistemas de UI y VFX basados en habilidades. Este proyecto fue una experiencia desafiante que me impulsó a mejorar mis habilidades de resolución de problemas y refinar mi enfoque en la implementación de gameplay.',
           'engendro-desc':   'Como Programador Principal, fui responsable de diseñar e implementar los sistemas centrales, además de crear VFX de apoyo para mejorar la experiencia del usuario. Fue un proyecto muy desafiante y gratificante que fortaleció mis habilidades de liderazgo y técnicas en el desarrollo de videojuegos.',
@@ -1852,6 +2071,44 @@
       });
 
       update();
+    })();
+
+    // ── FOLDER CABINET ──
+    (function () {
+      const tabs   = Array.from(document.querySelectorAll('.fstack-item'));
+      const panels = Array.from(document.querySelectorAll('.fopen-panel'));
+      const DURATION = 20000;
+      let current  = 0;
+      let autoTimer = null;
+
+      function go(idx) {
+        current = ((idx % tabs.length) + tabs.length) % tabs.length;
+        tabs.forEach((t, i)   => t.classList.toggle('fstack-active', i === current));
+        panels.forEach((p, i) => p.classList.toggle('active', i === current));
+
+        // Reset todas las barras
+        panels.forEach(p => {
+          const b = p.querySelector('.fopen-bar');
+          b.style.transition = 'none';
+          b.style.width = '0%';
+        });
+
+        // Animar barra activa
+        const bar = panels[current].querySelector('.fopen-bar');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            bar.style.transition = `width ${DURATION}ms linear`;
+            bar.style.width = '100%';
+          });
+        });
+
+        clearTimeout(autoTimer);
+        autoTimer = setTimeout(() => go(current + 1), DURATION);
+      }
+
+      tabs.forEach((tab, i) => tab.addEventListener('click', () => go(i)));
+
+      go(0);
     })();
   </script>
 </body>
